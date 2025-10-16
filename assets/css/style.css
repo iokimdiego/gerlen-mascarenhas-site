@@ -1,0 +1,29 @@
+body {
+  font-family: 'Lato', sans-serif;
+  color: #2E2E2A;
+  background-color: #F5EFE6;
+  margin: 0;
+  padding: 0;
+}
+
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(180deg, #3E6B56 0%, #F5EFE6 100%);
+  color: white;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.btn-cta {
+  background-color: #D4B483;
+  color: white;
+  padding: 12px 36px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 600;
+}
