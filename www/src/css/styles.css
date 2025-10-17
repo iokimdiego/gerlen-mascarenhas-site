@@ -111,23 +111,23 @@ header {
 
 /* animação leve para a imagem da direita (subir + fade) */
 .hero-gerlen {
-    width: 100%;
-    max-width: 480px;
+    width: auto; /* removido width:100% para manter proporção */
+    height: 85vh; /* altura proporcional à seção */
+    max-height: 800px; /* limite máximo */
+    object-fit: contain; /* mantém proporção */
     display: block;
     margin-left: auto;
     transform: translateY(24px);
     opacity: 0;
     transition: transform 700ms cubic-bezier(.2,.9,.2,1), opacity 700ms ease;
     will-change: transform, opacity;
+    position: absolute; /* posicionamento absoluto */
+    right: 5%; /* distância da direita */
+    bottom: 0; /* alinha com a base/onda */
+    z-index: 1; /* acima do background, abaixo da onda */
 }
 
-/* quando carregado: animação aplicada via classe (se preferir JS pode adicionar) */
-.hero-gerlen.visible {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-/* onda na base: entra da esquerda com fade in */
+/* ajuste na onda para garantir que fique sobre a imagem */
 .hero-wave {
     position: absolute;
     left: -8%;
@@ -138,6 +138,7 @@ header {
     transform: translateX(-40px);
     transition: transform 900ms cubic-bezier(.2,.9,.2,1), opacity 900ms ease;
     pointer-events: none;
+    z-index: 2; /* garante que fique sobre a imagem */
 }
 
 /* classes utilitárias para ativar as animações após load */
@@ -181,7 +182,13 @@ header {
     }
     .hero-left { order: 2; }
     .hero-right { order: 1; }
-    .hero-gerlen { max-width: 320px; margin: 0 auto; }
+    .hero-gerlen {
+        position: relative; /* volta ao fluxo normal em mobile */
+        height: auto; /* altura automática */
+        max-width: 320px; /* limite máximo de largura */
+        margin: 0 auto;
+        right: auto;
+    }
     .hero-wave { left: -20%; width: 140%; opacity: 0.95; }
 }
 
