@@ -1,0 +1,224 @@
+/* styles.css */
+
+/* Resetting default browser styles */
+@import url('normalize.css');
+@import url('colors.css');
+
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    padding-top: 5rem; /* corresponde à h-20 (80px) do header; ajuste se necessário */
+}
+
+h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+header {
+    background: #007BFF;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Header fixo, translúcido e sombra ao rolar */
+/* TODO: usa as cores da paleta definida no Tailwind config */
+#site-header {
+    /* cor perolada translúcida por padrão */
+    background: rgba(245, 237, 224, 0.55); /* bege perolado translúcido */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: box-shadow 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+}
+
+/* Classe aplicada por JS quando a página é rolada (sombra sutil) */
+#site-header.scrolled {
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    /* caminho corrigido: subir duas pastas até www, depois assets/images */
+    background-image: url('../../assets/images/banner-hero-background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 3rem 1rem;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+/* container central */
+.hero-inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+/* coluna esquerda: título e âncora */
+.hero-left {
+    color: #ffffff;
+    text-shadow: 0 4px 18px rgba(0,0,0,0.35);
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+    line-height: 1.05;
+    margin-bottom: 1.25rem;
+}
+
+.hero-subtitle {
+    font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+    margin-bottom: 1.5rem;
+}
+
+/* seta âncora elegante */
+.hero-anchor {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    background: rgba(28,103,88,0.95);
+    color: #fff;
+    text-decoration: none;
+    transition: transform 200ms ease, opacity 200ms ease;
+    box-shadow: 0 8px 18px rgba(28,103,88,0.18);
+    will-change: transform;
+}
+.hero-anchor:hover { transform: translateY(-4px); opacity: 0.95; }
+
+/* seta SVG */
+.hero-arrow { width: 26px; height: 26px; stroke: #fff; }
+
+/* animação leve para a imagem da direita (subir + fade) */
+.hero-gerlen {
+    width: 100%;
+    max-width: 480px;
+    display: block;
+    margin-left: auto;
+    transform: translateY(24px);
+    opacity: 0;
+    transition: transform 700ms cubic-bezier(.2,.9,.2,1), opacity 700ms ease;
+    will-change: transform, opacity;
+}
+
+/* quando carregado: animação aplicada via classe (se preferir JS pode adicionar) */
+.hero-gerlen.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* onda na base: entra da esquerda com fade in */
+.hero-wave {
+    position: absolute;
+    left: -8%;
+    bottom: 0;
+    width: 116%;
+    max-width: none;
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: transform 900ms cubic-bezier(.2,.9,.2,1), opacity 900ms ease;
+    pointer-events: none;
+}
+
+/* classes utilitárias para ativar as animações após load */
+.hero-animate .hero-gerlen { transform: translateY(0); opacity: 1; }
+.hero-animate .hero-wave { transform: translateX(0); opacity: 1; }
+
+/* About Section */
+.about {
+    padding: 50px 20px;
+    background: #f4f4f4;
+}
+
+/* Services Section */
+.services {
+    padding: 50px 20px;
+}
+
+/* Testimonials Section */
+.testimonials {
+    background: #e9ecef;
+    padding: 50px 20px;
+}
+
+/* Contact Section */
+.contact {
+    padding: 50px 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .hero {
+        height: 70vh;
+        padding: 2.5rem 1rem;
+        min-height: 64vh;
+        background-position: center 30%;
+    }
+    .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        text-align: center;
+    }
+    .hero-left { order: 2; }
+    .hero-right { order: 1; }
+    .hero-gerlen { max-width: 320px; margin: 0 auto; }
+    .hero-wave { left: -20%; width: 140%; opacity: 0.95; }
+}
+
+/* Pequeno ajuste para telas muito grandes */
+@media (min-width: 1400px) {
+    .hero-inner { max-width: 1400px; }
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #28a745;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #218838;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background: var(--color-background-footer);
+    color: #fff;
+}
+
+/* Acessibilidade visual: foco nos links do header */
+#site-header a:focus {
+    outline: 3px solid rgba(28, 103, 88, 0.15);
+    outline-offset: 3px;
+}
+
+/* Pequenas correções de estilo (cores caso use CSS puro) */
+.text-emerald { color: #1C6758; }
+.bg-emerald { background-color: #1C6758; }

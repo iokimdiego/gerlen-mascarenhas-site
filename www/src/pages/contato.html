@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Dra. Gerlen Mascarenhas, a professional physiotherapist in Manaus. Reach out for consultations and inquiries.">
+    <title>Contact - Dra. Gerlen Mascarenhas</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="../../src/css/normalize.css">
+    <link rel="stylesheet" href="../../src/css/styles.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: '#1C6758',
+                        pearl: '#F5EDE0',
+                        gold: '#D4AF37'
+                    },
+                    fontFamily: {
+                        playfair: ['Playfair Display', 'serif'],
+                        poppins: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Contact Dra. Gerlen Mascarenhas</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Get in Touch</h2>
+            <form id="contact-form" action="#" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+        <section>
+            <h2>Contact Information</h2>
+            <p>Email: <a href="mailto:gerlen@example.com">gerlen@example.com</a></p>
+            <p>Phone: <a href="tel:+559999999999">+55 99 9999-9999</a></p>
+            <p>Address: Rua Exemplo, 123, Manaus, AM, Brazil</p>
+        </section>
+    </main>
+    <script src="../../src/js/main.js"></script>
+    <script src="../../src/js/form-validation.js"></script>
+</body>
+</html>
