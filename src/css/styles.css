@@ -112,8 +112,8 @@ header {
 /* animação leve para a imagem da direita (subir + fade) */
 .hero-gerlen {
     width: auto; /* removido width:100% para manter proporção */
-    height: 85vh; /* altura proporcional à seção */
-    max-height: 800px; /* limite máximo */
+    height: 110vh; /* altura proporcional à seção */
+    /* max-height: 800px; limite máximo */
     object-fit: contain; /* mantém proporção */
     display: block;
     margin-left: auto;
@@ -122,7 +122,8 @@ header {
     transition: transform 700ms cubic-bezier(.2,.9,.2,1), opacity 700ms ease;
     will-change: transform, opacity;
     position: absolute; /* posicionamento absoluto */
-    right: 5%; /* distância da direita */
+    top: -7%; /* alinha com o topo da seção */
+    right: 0%; /* distância da direita */
     bottom: 0; /* alinha com a base/onda */
     z-index: 1; /* acima do background, abaixo da onda */
 }
