@@ -78,8 +78,9 @@ header {
 }
 
 .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+    font-family: ('Montserrat', serif);
+    font-weight: 900;
+    font-size: clamp(1.6rem, 4.5vw, 4.5rem);
     line-height: 1.05;
     margin-bottom: 1.25rem;
 }
@@ -87,6 +88,7 @@ header {
 .hero-subtitle {
     font-size: clamp(0.95rem, 2.2vw, 1.1rem);
     margin-bottom: 1.5rem;
+    color: var(--color-text);
 }
 
 /* seta âncora elegante */
@@ -97,12 +99,14 @@ header {
     width: 56px;
     height: 56px;
     border-radius: 999px;
-    background: rgba(28,103,88,0.95);
+    /* background: rgba(28,103,88,0.95); */
+    background: var(--color-verde-principal);
     color: #fff;
     text-decoration: none;
     transition: transform 200ms ease, opacity 200ms ease;
     box-shadow: 0 8px 18px rgba(28,103,88,0.18);
     will-change: transform;
+    margin-bottom: 2.5rem;
 }
 .hero-anchor:hover { transform: translateY(-4px); opacity: 0.95; }
 
@@ -228,5 +232,5 @@ footer {
 }
 
 /* Pequenas correções de estilo (cores caso use CSS puro) */
-.text-emerald { color: #1C6758; }
-.bg-emerald { background-color: #1C6758; }
+.text-emerald { color: var(--color-verde-principal); }
+.bg-emerald { background-color: var(--color-verde-principal); }
