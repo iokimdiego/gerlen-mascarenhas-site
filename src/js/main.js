@@ -78,4 +78,47 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 180);
         }
     })();
+
+    // Função para animação da seção de dores
+    function setupDoresAnimation() {
+        const doresSection = document.getElementById('dores');
+        const title = doresSection.querySelector('h2');
+        const subtitle = doresSection.querySelector('p');
+        const cards = doresSection.querySelectorAll('.bg-emerald-50');
+
+        // Adiciona classes para permitir animação
+        title.classList.add('dores-title');
+        subtitle.classList.add('dores-subtitle');
+        cards.forEach(card => card.classList.add('dores-card'));
+
+        // Configuração do Intersection Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Anima título e subtítulo
+                    title.classList.add('animate');
+                    subtitle.classList.add('animate');
+                    
+                    // Anima cada card
+                    cards.forEach(card => {
+                        card.classList.add('animate');
+                    });
+
+                    // Remove o observer após a animação
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        observer.observe(doresSection);
+    }
+
+    setupDoresAnimation();
 });

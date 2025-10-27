@@ -106,8 +106,14 @@
             </div>
         </div>
 
-        <!-- onda na base da seção -->
-        <img src="assets/images/banner-hero-onda.png" alt="" class="hero-wave" aria-hidden="true" />
+        <!-- onda na base da seção com altura reduzida -->
+        <svg class="hero-wave wave1" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 30 C150 80 350 -20 600 30 C850 80 1050 -20 1200 30 L1200 100 L0 100 Z" fill="#fff"></path>
+        </svg>
+
+        <svg class="hero-wave wave2" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 40 C180 90 420 -10 700 40 C980 90 1120 -10 1200 40 L1200 100 L0 100 Z" fill="#fff"></path>
+        </svg>
     </section>
 
     <!-- Seção: Você sente isso também? -->
@@ -125,7 +131,7 @@
     </p>
   </div>
 
-  <!-- Grade das Dores -->
+  <!-- Grade das Dores (os cards já têm a classe bg-emerald-50) -->
   <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
     <!-- 1. Retenção de líquidos e inchaço corporal -->
     <div class="bg-emerald-50 rounded-2xl shadow-sm p-8 text-center hover:shadow-lg transition">
@@ -164,7 +170,7 @@
       <p class="text-gray-700 mb-4">
         O espelho já não reflete a vitalidade que você sente por dentro.
       </p>
-      <p class="italic text-emerald-800 font-medium">
+      <p class="italic text-emerald-800
         Com as massagens modeladoras e cuidados personalizados, seu corpo retoma o contorno, a firmeza e a autoestima.
       </p>
     </div>

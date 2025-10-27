@@ -50,17 +50,10 @@ header {
     min-height: 80vh;
     display: flex;
     align-items: center;
-    /* caminho corrigido: subir duas pastas até www, depois assets/images */
-    background-image: url('../../assets/images/banner-hero-background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    padding: 3rem 1rem;
+    background: url('../../assets/images/banner-hero-background.png') center/cover no-repeat;
+    padding: 3rem 1rem 100px; /* padding inferior reduzido para acomodar onda menor */
     box-sizing: border-box;
     color: #fff;
-
-    /* evita que elementos posicionados absolutamente (ex: .hero-gerlen)
-       ultrapassem o limite da seção e gerem sombras sobre a próxima seção */
     overflow: hidden;
 }
 
@@ -134,26 +127,29 @@ header {
     top: -7%; /* alinha com o topo da seção */
     right: 0%; /* distância da direita */
     bottom: 0; /* alinha com a base/onda */
-    z-index: 1; /* acima do background, abaixo da onda */
+    z-index: 2; /* abaixo da onda (z-index: 3) */
 }
 
-/* ajuste na onda para garantir que fique sobre a imagem */
+/* onda na base da seção, ocupando toda a largura e sobre a imagem */
 .hero-wave {
     position: absolute;
-    left: -8%;
+    left: 0;
     bottom: 0;
-    width: 116%;
+    width: 200%;
     max-width: none;
-    opacity: 0;
-    transform: translateX(-40px);
-    transition: transform 900ms cubic-bezier(.2,.9,.2,1), opacity 900ms ease;
+    height: 120px; /* altura reduzida da onda */
+    opacity: 1; /* sempre visível */
+    transform: translateX(0); /* posição final fixa */
     pointer-events: none;
-    z-index: 2; /* garante que fique sobre a imagem */
+    z-index: 3; /* garante que fique sobre a imagem da Dra. Gerlen */
 }
+
+.wave1{ animation: moove 10s linear infinite; opacity: .8; } /* animação */
+.wave2{ animation: moove 18s linear infinite; opacity: .6; } /* animação */
 
 /* classes utilitárias para ativar as animações após load */
 .hero-animate .hero-gerlen { transform: translateY(0); opacity: 1; }
-.hero-animate .hero-wave { transform: translateX(0); opacity: 1; }
+/* removida animação da onda */
 
 /* Dores Section */
 .chamada-dores {
@@ -289,3 +285,40 @@ footer {
 /* Pequenas correções de estilo (cores caso use CSS puro) */
 .text-emerald { color: var(--color-verde-principal); }
 .bg-emerald { background-color: var(--color-verde-principal); }
+
+/* Animações para a seção de dores */
+.dores-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.2, 0.9, 0.3, 1); /* suavização da transição */
+}
+
+/* Delay escalonado para cada card */
+.dores-card:nth-child(1) { transition-delay: 0.6s; } /* primeiro card */
+.dores-card:nth-child(2) { transition-delay: 0.8s; } /* segundo card */
+.dores-card:nth-child(3) { transition-delay: 1.0s; } /* terceiro card */
+.dores-card:nth-child(4) { transition-delay: 1.2s; } /* quarto card */
+.dores-card:nth-child(5) { transition-delay: 1.4s; } /* quinto card */
+
+/* Ajuste dos delays para animações mais cadenciadas */
+.dores-title {
+  opacity: 0; /* inicia invisível */
+  transform: translateY(20px); /* leve subida */
+  transition: all 0.7s cubic-bezier(0.2, 0.9, 0.3, 1); /* suavização da transição */
+  transition-delay: 0.2s; /* delay inicial para o título */
+}
+
+.dores-subtitle {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.7s cubic-bezier(0.2, 0.9, 0.3, 1);
+  transition-delay: 0.4s; /* delay maior para o subtítulo */
+}
+
+/* Mantém os estados .animate iguais */
+.dores-title.animate,
+.dores-subtitle.animate,
+.dores-card.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
