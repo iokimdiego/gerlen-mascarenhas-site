@@ -204,8 +204,50 @@ header {
 /* About Section */
 .about {
     padding: 50px 20px;
-    background: #f4f4f4;
+    background: #fbfaf8;
+    /* background-color: var(--color-bege-secondary); */
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+    align-items: center;
+    padding: 3rem 1rem 100px; /* padding inferior reduzido para acomodar onda menor */
+    box-sizing: border-box;
+    color: var(--color-text);
+    overflow: hidden;
 }
+
+.about-me-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.about h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.about p {
+    color: #555;
+    line-height: 1.6;
+}
+
+.about .wave-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.grad-fill {
+    fill: url(#gradientWave);
+}
+
+
 
 /* Services Section */
 .services {
@@ -400,3 +442,5 @@ footer {
     height: 32px;
   }
 }
+
+/* Seção About Me */
