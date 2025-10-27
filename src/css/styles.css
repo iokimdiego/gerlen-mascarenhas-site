@@ -152,6 +152,13 @@ header {
 /* removida animação da onda */
 
 /* Dores Section */
+.dores {
+  background: var(--color-background-branco);
+}
+
+.dores .card {
+  background: var(--color-background);
+}
 .chamada-dores {
     /* remover altura fixa que pode cortar texto; usar padding para dimensionar */
     text-align: center;
@@ -179,7 +186,7 @@ header {
 /* Gradient text para destacar "Seu corpo fala" */
 .chamada-titulo .chamada-gradient {
     /* gradiente claro → dourado que contrasta bem com o verde de fundo */
-    background: #fff; /* cor base clara */
+    background: var(--color-background-branco); /* cor base clara */
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -204,7 +211,7 @@ header {
 /* About Section */
 .about {
     padding: 50px 20px;
-    background: #fbfaf8;
+    background: var(--color-background-branco);
     /* background-color: var(--color-bege-secondary); */
     position: relative;
     width: 100%;
