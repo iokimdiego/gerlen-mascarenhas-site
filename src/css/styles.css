@@ -293,6 +293,16 @@ footer {
   transition: all 0.8s cubic-bezier(0.2, 0.9, 0.3, 1); /* suavização da transição */
 }
 
+/* Efeito hover rápido e responsivo para os cards */
+#dores .bg-emerald-50 {
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+#dores .bg-emerald-50:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
 /* Delay escalonado para cada card */
 .dores-card:nth-child(1) { transition-delay: 0.6s; } /* primeiro card */
 .dores-card:nth-child(2) { transition-delay: 0.8s; } /* segundo card */
