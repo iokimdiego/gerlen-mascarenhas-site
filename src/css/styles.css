@@ -243,58 +243,26 @@ header {
 /* Dores Section */
 .dores {
   background: var(--color-background-branco);
+  padding: 3rem 1rem 6rem; /* reduzido padding inferior pela metade (de 12rem para 6rem) */
 }
 
 .dores .card {
   background: var(--color-background);
 }
-.chamada-dores {
-    /* remover altura fixa que pode cortar texto; usar padding para dimensionar */
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4rem 1.25rem; /* ajusta espaço acima/abaixo responsivamente */
-    background-color: var(--color-verde-principal);
-    width: 100%;
-    height: 30vh;
-    
-    /* se quiser limite máximo de altura, usar min-height em vez de height fixa */
-    min-height: 18rem;
-    box-sizing: border-box;
+
+/* Ajustes de espaçamento para a seção dores */
+.dores .max-w-7xl {
+  margin-top: 0; /* elimina espaço entre topo e título */
 }
 
-.chamada-titulo {
-    color: var(--color-dourado);
-    font-weight: 900;
-    font-size: clamp(1.25rem, 2.5vw, 2rem);
-    line-height: 1.08; /* aumenta espaço vertical para evitar corte */
-    margin: 0;
+.dores h2 {
+  padding-top: 0; /* garante que não há padding no topo do título */
+  margin-top: 0;
 }
 
-/* Gradient text para destacar "Seu corpo fala" */
-.chamada-titulo .chamada-gradient {
-    /* gradiente claro → dourado que contrasta bem com o verde de fundo */
-    background: var(--color-background-branco); /* cor base clara */
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    /* usar escala responsiva em vez de 5vh que pode causar corte */
-    font-size: clamp(1.6rem, 4.2vw, 2.4rem);
-    font-weight: 900;
-    display: inline-block;
-    line-height: 1; /* evita extra espaço interno no próprio span */
-    text-shadow: 0 1px 2px rgba(0,0,0,0.18); /* sintaxe corrigida */
-}
-
-.chamada-titulo .destaque {
-    font-size: clamp(1rem, 2.2vw, 1.25rem);
-    color: #fff;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.18);
-    display: block;
-    margin-top: 0.5rem;
-    margin-bottom: 2rem;
+.dores p.text-lg {
+  margin-top: 2.5rem; /* aumenta espaço entre subtítulo e cards */
+  margin-bottom: 3rem; /* espaço generoso antes dos cards */
 }
 
 /* About Section */
@@ -374,6 +342,17 @@ header {
 
 .btn:hover {
     background: #218838;
+}
+
+.chamada-dores {
+  background: var(--color-bege-secondary)
+}
+
+.chamada-titulo {
+  padding-top: 3rem;
+  color: var(--color-background-branco);
+  font-weight:900;
+  font-size: 1.6rem;
 }
 
 /* Novos botões para chamadas à ação */
