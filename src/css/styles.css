@@ -47,14 +47,25 @@ header {
 .hero {
     position: relative;
     width: 100%;
-    min-height: 80vh;
+    min-height: 100vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     background: url('../../assets/images/banner-hero-background.png') center/cover no-repeat;
-    padding: 3rem 1rem 100px; /* padding inferior reduzido para acomodar onda menor */
+    padding: 3rem 1rem 100px;
     box-sizing: border-box;
     color: #fff;
     overflow: hidden;
+}
+
+.hero-logo {
+    position: absolute;
+    top: 15vh;
+    left: 40vw;
+    width: 20vw;
+    height: 20vh;
+    background: url('../../assets/images/logo-simbolo.png') center/contain no-repeat;
+    z-index: 4;
 }
 
 /* container central */
@@ -79,55 +90,133 @@ header {
     font-weight: 900;
     font-size: clamp(1.6rem, 4.5vw, 4.5rem);
     line-height: 1.05;
-    margin-bottom: 1.25rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 3;
     /* text-shadow: 0 1px 2px rgba(0,0,0,0.18); aumenta contraste e legibilidade */
 }
 
 .hero-subtitle {
     font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+    max-width: 80%;
     margin-bottom: 1.5rem;
-    color: var(--color-text);
+    color: var(--color-background-branco);
+    position: relative;
+    z-index: 3;
 }
 
-/* seta âncora elegante */
+/* Botão CTA elegante da hero section */
 .hero-anchor {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 56px;
-    height: 56px;
-    border-radius: 999px;
-    /* background: rgba(28,103,88,0.95); */
-    background: var(--color-verde-principal);
+    gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    background: linear-gradient(135deg, 
+        var(--color-dourado) 0%, 
+        #b8944a 100%
+    );
     color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
     text-decoration: none;
-    transition: transform 200ms ease, opacity 200ms ease;
-    box-shadow: 0 8px 18px rgba(28,103,88,0.18);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 24px rgba(210, 169, 86, 0.35),
+                0 4px 12px rgba(0, 0, 0, 0.15);
     will-change: transform;
     margin-bottom: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 3;
 }
-.hero-anchor:hover { transform: translateY(-4px); opacity: 0.95; }
 
-/* seta SVG */
-.hero-arrow { width: 26px; height: 26px; stroke: #fff; }
+/* Efeito de brilho no hover */
+.hero-anchor::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
 
-/* animação leve para a imagem da direita (subir + fade) */
+.hero-anchor:hover::before {
+    left: 100%;
+}
+
+.hero-anchor:hover { 
+    transform: translateY(-4px) scale(1.05); 
+    box-shadow: 0 12px 32px rgba(210, 169, 86, 0.45),
+                0 6px 16px rgba(0, 0, 0, 0.2);
+    animation: none;
+}
+
+.hero-anchor:active {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(210, 169, 86, 0.3),
+                0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Ícone do WhatsApp dentro do botão */
+.hero-anchor svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+/* Animação de pulso suave */
+@keyframes cta-pulse {
+    0%, 100% {
+        box-shadow: 0 8px 24px rgba(210, 169, 86, 0.35),
+                    0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+        box-shadow: 0 8px 24px rgba(210, 169, 86, 0.35),
+                    0 4px 12px rgba(0, 0, 0, 0.15),
+                    0 0 0 10px rgba(210, 169, 86, 0.1);
+    }
+}
+
+.hero-anchor {
+    animation: cta-pulse 3s ease-in-out infinite;
+}
+
+.hero-transparent {
+    background: var(--color-verde-principal);
+    width: 100%;
+    height: 100vh;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+    z-index: 0;
+}
+
 .hero-gerlen {
-    width: auto; /* removido width:100% para manter proporção */
-    height: 110vh; /* altura proporcional à seção */
-    /* max-height: 800px; limite máximo */
-    object-fit: contain; /* mantém proporção */
+    width: auto;
+    height: 130vh;
+    object-fit: contain;
     display: block;
     margin-left: auto;
     transform: translateY(24px);
+    align-items: end;
     opacity: 0;
     transition: transform 700ms cubic-bezier(.2,.9,.2,1), opacity 700ms ease;
     will-change: transform, opacity;
-    position: absolute; /* posicionamento absoluto */
-    top: -7%; /* alinha com o topo da seção */
-    right: 0%; /* distância da direita */
-    bottom: 0; /* alinha com a base/onda */
-    z-index: 2; /* abaixo da onda (z-index: 3) */
+    position: absolute;
+    top:-7%;
+    right: 10%;
+    bottom: 0;
+    z-index: 2;
 }
 
 /* onda na base da seção, ocupando toda a largura e sobre a imagem */
@@ -137,15 +226,15 @@ header {
     bottom: 0;
     width: 200%;
     max-width: none;
-    height: 120px; /* altura reduzida da onda */
-    opacity: 1; /* sempre visível */
-    transform: translateX(0); /* posição final fixa */
+    height: 120px;
+    opacity: 1;
+    transform: translateX(0);
     pointer-events: none;
     z-index: 3; /* garante que fique sobre a imagem da Dra. Gerlen */
 }
 
-.wave1{ animation: moove 10s linear infinite; opacity: .8; } /* animação */
-.wave2{ animation: moove 18s linear infinite; opacity: .6; } /* animação */
+.wave1 { animation: moove 10s linear infinite; opacity: .8; } /* animação */
+.wave2 { animation: moove 18s linear infinite; opacity: .6; } /* animação */
 
 /* classes utilitárias para ativar as animações após load */
 .hero-animate .hero-gerlen { transform: translateY(0); opacity: 1; }
