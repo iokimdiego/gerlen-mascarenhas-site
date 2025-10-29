@@ -243,7 +243,7 @@ header {
 /* Dores Section */
 .dores {
   background: var(--color-background-branco);
-  padding: 3rem 1rem 6rem; /* reduzido padding inferior pela metade (de 12rem para 6rem) */
+  padding: 3rem 1rem 8rem; /* mais espaço para a sobreposição */
 }
 
 .dores .card {
@@ -267,17 +267,19 @@ header {
 
 /* About Section */
 .about {
-    padding: 50px 20px;
-    background: var(--color-background-branco);
-    /* background-color: var(--color-bege-secondary); */
-    position: relative;
-    width: 100%;
-    min-height: 80vh;
-    align-items: center;
-    padding: 3rem 1rem 100px; /* padding inferior reduzido para acomodar onda menor */
-    box-sizing: border-box;
-    color: var(--color-text);
-    overflow: hidden;
+  padding: 50px 20px;
+  background: var(--color-background-branco);
+  /* background-color: var(--color-bege-secondary); */
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+  align-items: center;
+  padding: 3rem 1rem 100px; /* padding inferior reduzido para acomodar onda menor */
+  box-sizing: border-box;
+  color: var(--color-text);
+  overflow: hidden;
+  /* adiciona respiro sob o card flutuante */
+  padding-top: 8rem;
 }
 
 .about-me-content {
@@ -345,15 +347,79 @@ header {
 }
 
 .chamada-dores {
-  background: var(--color-bege-secondary)
+  background: transparent;
+  color: inherit;
+  padding: 4.5rem 1rem;
+  display: flex;
+  justify-content: center;
+
+  /* flutua entre as seções (sobrepõe topo de about e final de dores) */
+  position: relative;
+  z-index: 10;
+  margin-top: -4rem;    /* sobe sobre a seção dores */
+  margin-bottom: -4rem; /* invade levemente a seção about */
 }
 
-.chamada-titulo {
-  padding-top: 3rem;
-  color: var(--color-background-branco);
-  font-weight:900;
-  font-size: 1.6rem;
+@media (max-width: 640px) {
+  .chamada-box { border-radius: 20px; }
+  .chamada-dores {
+    margin-top: -3rem;
+    margin-bottom: -3rem;
+  }
 }
+
+/* Cartão elegante com gradiente verde */
+.chamada-box {
+  width: min(100%, 960px);
+  padding: clamp(1.75rem, 3vw, 2.75rem) clamp(1.5rem, 4vw, 3rem);
+  border-radius: 24px;
+  text-align: center;
+  background: linear-gradient(135deg, #3f7052 0%, #2e5a40 100%); /* variação do verde principal */
+  box-shadow: 0 16px 40px rgba(63, 112, 82, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+/* brilho suave decorativo (opcional) */
+.chamada-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(900px 220px at 80% -10%, rgba(255,255,255,0.16), transparent 60%);
+  pointer-events: none;
+}
+
+.chamada-heading {
+  margin: 0;
+  color: var(--color-background-branco);
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3.2vw, 2.2rem);
+  line-height: 1.15;
+}
+
+.chamada-heading .chamada-gradient {
+  color: var(--color-background-branco);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.18);
+}
+
+.chamada-subtitle {
+  margin: 0.75rem 0 0;
+  color: var(--color-background-branco);
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.4;
+}
+
+/* ajustes responsivos */
+@media (max-width: 640px) {
+  .chamada-box { border-radius: 20px; }
+  .chamada-dores {
+    margin-top: -3rem;
+    margin-bottom: -3rem;
+  }
+}
+/* Mantém classes antigas sem uso crítico */
+.chamada-titulo { /* mantida para compatibilidade, não utilizada neste layout */ }
 
 /* Novos botões para chamadas à ação */
 
