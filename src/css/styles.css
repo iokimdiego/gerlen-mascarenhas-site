@@ -243,7 +243,7 @@ header {
 /* Dores Section */
 .dores {
   background: var(--color-background-branco);
-  padding: 3rem 1rem 8rem; /* mais espaço para a sobreposição */
+  padding: 3rem 1rem 12rem; /* mais espaço para a sobreposição */
 }
 
 .dores .card {
@@ -356,8 +356,8 @@ header {
   /* flutua entre as seções (sobrepõe topo de about e final de dores) */
   position: relative;
   z-index: 10;
-  margin-top: -10rem;    /* sobe sobre a seção dores */
-  margin-bottom: -10rem; /* invade levemente a seção about */
+  margin-top: -11rem;    /* sobe sobre a seção dores */
+  margin-bottom: -11rem; /* invade levemente a seção about */
 }
 
 @media (max-width: 640px) {
