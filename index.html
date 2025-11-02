@@ -123,7 +123,7 @@
   <section id="dores" class="dores">
   <div class="max-w-7xl mx-auto text-center px-6 md:px-16 lg:px-24">
     <!-- Título -->
-    <h2 class="text-3xl md:text-4xl font-semibold text-emerald-900 mb-6">
+    <h2 class="text-3xl md:text-4xl font-semibold mb-6">
       Você sente isso também?
     </h2>
     
@@ -230,77 +230,87 @@
     </div>
   </section>
   
-  <!-- Seção: mosaico de imagens da Dra. Gerlen -->
-  <section id="mosaico-gerlen" class="mosaico-gerlen py-12" aria-label="Mosaico de imagens">
-    <div class="mosaic-grid max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
-      <div class="mosaic-item a1">
-        <img src="assets/images/mosaicoa1.jpg" alt="Dra. Gerlen" loading="lazy">
-      </div>
-      <div class="mosaic-item b12">
-        <img src="assets/images/mosaicob12.jpg" alt="Tratamento e bem-estar" loading="lazy">
-      </div>
-      <div class="mosaic-item a23">
-        <img src="assets/images/mosaicoa23.jpg" alt="Ambiente de atendimento" loading="lazy">
-      </div>
-      <div class="mosaic-item b3">
-        <img src="assets/images/mosaicob3.jpg" alt="Logo" loading="lazy">
-      </div>
-    </div>
-  </section>
-
+  <!-- Seção: Sobre a Dra. Gerlen -->
   <section id="sobre" class="about py-20">
-    <div class="container mx-auto flex flex-col md:flex-row items-center gap-12 px-6">
-    <!-- Imagem da Dra. Gerlen -->
-    <div class="mosaico-gerlen">
-      <div class="mosaico-linha linha1">
-        <div class="mosaico-item item1">1</div>
-        <div class="mosaico-item item2">2</div>
+    <div class="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
+      
+      <!-- Primeira linha: Mosaico (50%) + Texto (50%) -->
+      <div class="grid md:grid-cols-2 gap-12 mb-20 items-center">
+        <!-- Coluna Esquerda: Mosaico -->
+        <div class="mosaic-grid-wrapper">
+          <div class="mosaic-grid">
+            <div class="mosaic-item a1">
+              <img src="assets/images/mosaicoa1.jpg" alt="Dra. Gerlen" loading="lazy">
+            </div>
+            <div class="mosaic-item b12">
+              <img src="assets/images/mosaicob12.jpg" alt="Tratamento e bem-estar" loading="lazy">
+            </div>
+            <div class="mosaic-item a23">
+              <img src="assets/images/mosaicoa23.jpg" alt="Ambiente de atendimento" loading="lazy">
+            </div>
+            <div class="mosaic-item b3">
+              <img src="assets/images/mosaicob3.jpg" alt="Logo" loading="lazy">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Coluna Direita: Título + 4 Parágrafos -->
+        <div class="space-y-6">
+          <h2 class="text-3xl md:text-4xl font-semibold">Quem é a Dra. Gerlen Mascarenhas?</h2>
+          
+          <p class="text-lg text-gray-700 leading-relaxed">
+            Formada em <strong>Fisioterapia pela Universidade Paulista (UNIP)</strong>, a Dra. Gerlen Mascarenhas construiu sua trajetória com dedicação ao cuidado individualizado, atuando em diferentes frentes promovendo saúde, movimento e bem-estar.
+          </p>
+          
+          <p class="text-lg text-gray-700 leading-relaxed">
+            Em sua carreira, tem se destacado pelo atendimento humanizado e personalizado, levando a fisioterapia para dentro dos lares, proporcionando conforto, acolhimento e resultados reais às pacientes.
+          </p>
+          
+          <p class="text-lg text-gray-700 leading-relaxed">
+            Com formações complementares em Pilates, Reabilitação para Idosos, Cuidados Pós-Cirúrgicos e Pós-Traumáticos, e também como Doula, a Dra. Gerlen tem unido conhecimento técnico e sensibilidade humana para promover uma experiência completa, respeitando os limites e potenciais de cada mulher.
+          </p>
+          
+          <p class="text-lg text-gray-700 leading-relaxed">
+            Atualmente, atua como Fisioterapeuta e Instrutora de Pilates na Clínica Knesys, em Manaus (AM), onde oferece um atendimento integrativo que combina fisioterapia, movimento e autocuidado. Sua missão é devolver às suas pacientes a liberdade de viver sem dores, com leveza, confiança e qualidade de vida.
+          </p>
+        </div>
       </div>
-      <div class="mosaico-linha linha2">
-        <div class="mosaico-item item3">3</div>
-        <div class="mosaico-item item4">4</div>
+      
+      <!-- Segunda linha: Texto (50%) + Imagem dra-gerlen.jpg (50%) -->
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Coluna Esquerda: Título + 1 Parágrafo + CTA -->
+        <div class="space-y-6">
+          <h2 class="text-2xl md:text-3xl font-semibold text-emerald-900">O que a Dra. Gerlen pode fazer por você?</h2>
+          
+          <p class="text-lg text-gray-700 leading-relaxed">
+            Com uma abordagem humanizada e técnica apurada, A Dra. Gerlen leva a fisioterapia até você, para dentro dos lares, ajudando na reabilitação e recuperação de movimentos, alívio das dores e melhoria da qualidade de vida
+          </p>
+          
+          <p class="italic text-gray-600 text-lg">
+            "Cuidar é o que me move!"
+          </p>
+          
+          <a href="https://wa.me/5592992555753?text=Olá%2C%20Dra.%20Gerlen%2C%20vim%20do%20seu%20site%20e%20gostaria%20de%20agendar%20uma%20avaliação" 
+             target="_blank"
+             rel="noopener noreferrer"
+             class="inline-flex items-center mt-6 bg-emerald text-white px-8 py-3 rounded-full shadow-md hover:opacity-95 transition">
+            <svg class="inline-block w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Agende sua consulta
+          </a>
+        </div>
+        
+        <!-- Coluna Direita: Imagem da Dra. Gerlen -->
+        <div class="relative">
+          <img src="assets/images/dra-gerlen.jpg" alt="Dra. Gerlen Mascarenhas" class="rounded-2xl shadow-lg w-full h-auto object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-emerald-900/10 to-transparent rounded-2xl"></div>
+        </div>
       </div>
-      <div class="mosaico-linha linha3">
-        <div class="mosaico-item item5">5</div>
-        <div class="mosaico-item item6">6</div>
-      </div>
+      
     </div>
-    <div class="md:w-1/2 relative">
-      <img src="assets/images/dra-gerlen.jpg" alt="Dra. Gerlen Mascarenhas" class="rounded-2xl shadow-lg w-full object-cover">
-      <div class="absolute inset-0 bg-gradient-to-t from-emerald-900/10 to-transparent rounded-2xl"></div>
-    </div>
-    
-    <!-- Texto -->
-    <div class="md:w-1/2 space-y-6">
-      <h2 class="text-3xl font-semibold text-emerald-900">Dra. Gerlen Mascarenhas</h2>
-      <h4 class="text-lg font-medium text-emerald-800">Fisioterapeuta e Especialista em Saúde da Mulher</h4>
-      <p class="text-lg text-gray-700 leading-relaxed">
-        A Dra. Gerlen Mascarenhas é <strong> fisioterapeuta formada pela UNIP</strong>, com especializações em Pilates, Reabilitação para Idosos e Pós-operatórios e formação complementar em atendimento à gestante e <strong>doula</strong> também.
-      </p>
-      <p class="text-lg text-gray-700 leading-relaxed">
-        Seu trabalho voltado para a prevenção e o tratamento de dores musculoesqueléticas e disfunções corporais, em promove <strong>mobilidade, força, equilíbrio e qualidade de vida</strong>.
-      </p>
-      <p class="text-lg text-gray-700 leading-relaxed">
-        Atuando em Manaus, a Dra. Gerlen utiliza protocolos baseados em evidências científicas e técnicas personalizadas para cada paciente, respeitando o limite e a individualidade de cada corpo.
-      </p>
-      <p class="text-lg text-gray-700 leading-relaxed">
-        Seu atendimento alia precisão técnica e acolhimento humanizado, proporcionando resultados eficazes no alívio de dores crônicas, recuperação pós-cirúrgica, fortalecimento do core e melhora da postura e da circulação.
-      </p>
-      <p class="italic text-gray-600">
-        “Cuidar é o que me move!”
-      </p>
-      <a href="https://wa.me/5592992555753?text=Olá%2C%20Dra.%20Gerlen%2C%20vim%20do%20seu%20site%20e%20gostaria%20de%20agendar%20uma%20avaliação" 
-         target="_blank"
-         rel="noopener noreferrer"
-         class="inline-flex items-center mt-6 bg-emerald text-white px-8 py-3 rounded-full shadow-md hover:opacity-95 transition">
-        <svg class="inline-block w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        Agende sua avaliação
-      </a>
-    </div>
-  </div>
-</section>
+  </section>  
+  
 
 
 

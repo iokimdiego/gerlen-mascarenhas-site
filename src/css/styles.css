@@ -258,6 +258,7 @@ header {
 .dores h2 {
   padding-top: 0; /* garante que não há padding no topo do título */
   margin-top: 0;
+  color: var(--color-bege-secondary);
 }
 
 .dores p.text-lg {
@@ -675,6 +676,10 @@ footer {
 
 /* Seção About Me */
 
+.about h2{
+  color: var(--color-bege-secondary);
+}
+
 .chamada-cta {
   display: inline-flex;
   align-items: center;
@@ -766,19 +771,49 @@ footer {
 .mosaic-item.b12 { grid-area: b12; }
 .mosaic-item.b3 { grid-area: b3; }
 
-/* Ajuste específico: subir enquadramento da imagem mosaicob3.jpg em 30% */
-.mosaic-item.b3 img {
-  /* move o ponto focal vertical para cima ~30% (50% - 30% = 20%) */
-  object-position: 50% 20%;
+/* Aumentar o zoom e ajustar enquadramento da imagem mosaicoa1.jpg */
+.mosaic-item.a1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(2.5) translateY(20%); /* scale + move para baixo */
+  transform-origin: center center;
+  transition: transform 250ms ease;
+  filter: grayscale(100%);
 }
 
-/* Aumentar o zoom da imagem mosaicoa1.jpg em ~200% (escala 2x) mantendo o recorte central */
-.mosaic-item.a1 img {
-  transform: scale(2);
+.mosaic-item.a23 img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1) translateY(-4%);
   transform-origin: center center;
-  /* garante suavidade caso queira animação */
   transition: transform 250ms ease;
+  filter: grayscale(100%);
 }
+
+.mosaic-item.b12 img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.2) translateX(2%) translateY(-4%);
+  transform-origin: center center;
+  transition: transform 250ms ease;
+  filter: grayscale(100%);
+}
+
+/* Ajuste específico: subir enquadramento da imagem mosaicob3.jpg em 30% */
+.mosaic-item.b3 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+  object-position: 50% 16%;
+  transform-origin: center top;
+  transition: transform 250ms ease;
+  filter: grayscale(100%);
+}
+
 
 /* estilos menores para bordas/ombra sutis, sem atrapalhar leitura */
 .mosaic-item::after {
