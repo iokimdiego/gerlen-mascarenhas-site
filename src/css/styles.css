@@ -258,6 +258,7 @@ header {
 .dores h2 {
   padding-top: 0; /* garante que não há padding no topo do título */
   margin-top: 0;
+  color: var(--color-bege-secondary);
 }
 
 .dores p.text-lg {
@@ -675,6 +676,10 @@ footer {
 
 /* Seção About Me */
 
+.about h2{
+  color: var(--color-bege-secondary);
+}
+
 .chamada-cta {
   display: inline-flex;
   align-items: center;
@@ -766,19 +771,49 @@ footer {
 .mosaic-item.b12 { grid-area: b12; }
 .mosaic-item.b3 { grid-area: b3; }
 
-/* Ajuste específico: subir enquadramento da imagem mosaicob3.jpg em 30% */
-.mosaic-item.b3 img {
-  /* move o ponto focal vertical para cima ~30% (50% - 30% = 20%) */
-  object-position: 50% 20%;
+/* Aumentar o zoom e ajustar enquadramento da imagem mosaicoa1.jpg */
+.mosaic-item.a1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(2.5) translateY(20%); /* scale + move para baixo */
+  transform-origin: center center;
+  transition: transform 250ms ease;
+  filter: grayscale(100%);
 }
 
-/* Aumentar o zoom da imagem mosaicoa1.jpg em ~200% (escala 2x) mantendo o recorte central */
-.mosaic-item.a1 img {
-  transform: scale(2);
+.mosaic-item.a23 img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1) translateY(-4%);
   transform-origin: center center;
-  /* garante suavidade caso queira animação */
   transition: transform 250ms ease;
+  filter: grayscale(100%);
 }
+
+.mosaic-item.b12 img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.2) translateX(2%) translateY(-4%);
+  transform-origin: center center;
+  transition: transform 250ms ease;
+  filter: grayscale(100%);
+}
+
+/* Ajuste específico: subir enquadramento da imagem mosaicob3.jpg em 30% */
+.mosaic-item.b3 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+  object-position: 50% 16%;
+  transform-origin: center top;
+  transition: transform 250ms ease;
+  filter: grayscale(100%);
+}
+
 
 /* estilos menores para bordas/ombra sutis, sem atrapalhar leitura */
 .mosaic-item::after {
@@ -799,4 +834,481 @@ footer {
     grid-template-areas: "a1" "b12" "a23" "b3";
   }
   .mosaic-item { border-radius: 10px; }
+}
+
+/* ============================================
+   SEÇÃO DE SERVIÇOS
+   ============================================ */
+.services-section {
+  background: var(--color-background);
+  position: relative;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.service-card {
+  background: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-verde-principal), var(--color-dourado));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(63, 112, 82, 0.15);
+}
+
+.service-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--color-verde-principal), #4b8160);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  transform: rotate(5deg) scale(1.1);
+  background: linear-gradient(135deg, var(--color-dourado), #b8944a);
+}
+
+.service-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.service-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-verde-principal);
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.service-description {
+  color: var(--color-text);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+@media (max-width: 820px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .service-card {
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* ============================================
+   SEÇÃO DE DEPOIMENTOS
+   ============================================ */
+.testimonials-section {
+  background: var(--color-bege-secondary);
+  position: relative;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.testimonial-card {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.testimonial-quote {
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--color-verde-principal), #4b8160);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(63, 112, 82, 0.3);
+}
+
+.testimonial-quote svg {
+  width: 24px;
+  height: 24px;
+}
+
+.testimonial-text {
+  color: var(--color-text);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin: 2rem 0 1.5rem;
+  font-style: italic;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.author-avatar {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--color-dourado), #b8944a);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.author-info h4 {
+  font-weight: 600;
+  color: var(--color-verde-principal);
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+}
+
+.author-info p {
+  color: var(--color-text);
+  opacity: 0.7;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+@media (max-width: 820px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .testimonial-card {
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* ============================================
+   SEÇÃO INSTAGRAM
+   ============================================ */
+.instagram-section {
+  background: var(--color-background);
+  position: relative;
+}
+
+.instagram-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #E4405F, #C13584);
+  color: #ffffff;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(193, 53, 132, 0.3);
+  transition: all 0.3s ease;
+}
+
+.instagram-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(193, 53, 132, 0.4);
+  background: linear-gradient(135deg, #C13584, #833AB4);
+}
+
+.instagram-cta svg {
+  width: 24px;
+  height: 24px;
+}
+
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.instagram-post {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.instagram-post img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: all 0.4s ease;
+}
+
+.instagram-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.instagram-overlay svg {
+  width: 48px;
+  height: 48px;
+  color: #ffffff;
+}
+
+.instagram-post:hover .instagram-overlay {
+  opacity: 1;
+}
+
+.instagram-post:hover img {
+  transform: scale(1.1);
+}
+
+@media (max-width: 1024px) {
+  .instagram-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .instagram-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+/* ============================================
+   SEÇÃO CONTATO
+   ============================================ */
+.contact-section {
+  background: var(--color-background-branco);
+  position: relative;
+}
+
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  margin-top: 3rem;
+}
+
+/* Informações de Contato */
+.contact-info {
+  background: linear-gradient(135deg, var(--color-verde-principal), #2e5a40);
+  padding: 3rem 2.5rem;
+  border-radius: 20px;
+  color: #ffffff;
+  box-shadow: 0 12px 40px rgba(63, 112, 82, 0.25);
+}
+
+.contact-info-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.contact-info-text {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-method {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  backdrop-filter: blur(10px);
+}
+
+.contact-method:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(8px);
+}
+
+.contact-method-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-method-icon svg {
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+}
+
+.contact-method-text h4 {
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+}
+
+.contact-method-text p {
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Formulário de Contato */
+.contact-form-wrapper {
+  background: #ffffff;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--color-verde-principal);
+  font-size: 0.95rem;
+}
+
+.form-input {
+  padding: 0.875rem 1.25rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-verde-principal);
+  box-shadow: 0 0 0 3px rgba(63, 112, 82, 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, var(--color-verde-principal), #4b8160);
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(63, 112, 82, 0.3);
+}
+
+.form-submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(63, 112, 82, 0.4);
+  background: linear-gradient(135deg, #4b8160, var(--color-verde-principal));
+}
+
+.form-submit-btn:active {
+  transform: translateY(-1px);
+}
+
+.form-submit-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 1024px) {
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-info {
+    padding: 2rem 1.5rem;
+  }
+  .contact-form-wrapper {
+    padding: 2rem 1.5rem;
+  }
 }
