@@ -1044,6 +1044,7 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 400px;
     filter: brightness(0) invert(1);
     object-fit: contain;
+    margin-bottom: 1rem;
 }
 
 .footer-description {
