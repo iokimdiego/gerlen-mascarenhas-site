@@ -319,6 +319,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .chamada-box {
     width: min(100%, 1200px);
+    padding: 2.5rem 2rem;
     margin: 0 auto;
     background-color: var(--color-bege-secondary);
     box-shadow: 0 16px 40px rgba(63, 112, 82, 0.18);
