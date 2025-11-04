@@ -9,6 +9,11 @@
     <title>Gerlen Mascarenhas - Fisioterapeuta em Manaus</title>
     <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
     
+    <!-- Google Fonts - Quicksand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -27,8 +32,7 @@
                         gold: '#d2a956'
                     },
                     fontFamily: {
-                        playfair: ['Playfair Display', 'serif'],
-                        poppins: ['Poppins', 'sans-serif']
+                        quicksand: ['Quicksand', 'sans-serif']
                     }
                 }
             }
@@ -40,7 +44,8 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-20">
             <!-- Logo -->
             <a href="#hero" class="flex items-center" aria-label="Ir para o início">
-                <img src="assets/images/logo.png" alt="Logo Dra. Gerlen Mascarenhas" class="h-12 w-auto" />
+                <!-- <img src="assets/images/logo.png" alt="Logo Dra. Gerlen Mascarenhas" class="h-12 w-auto" /> -->
+                <img src="assets/images/logo.png" alt="Logo Dra. Gerlen Mascarenhas" class="header-logo" />
                 <span class="ml-3 font-playfair text-xl text-emerald hidden sm:inline"></span>
             </a>
 
@@ -745,9 +750,8 @@
           
           <div class="footer-developer">
             <span>Desenvolvido por</span>
-            <a href="https://iokimdiego.dev.br" target="_blank" rel="noopener noreferrer" class="developer-link">
+            <a href="https://iokimdiego.dev.br" target="_blank" rel="noopener noreferrer" title="Iokim Diego" class="developer-link">
               <img src="https://iokimdiego.dev.br/assets/img/logo-id-dev.png" alt="Logo Iokim Diego" class="developer-logo" />
-              <span class="developer-name">Iokim Diego</span>
             </a>
           </div>
         </div>
