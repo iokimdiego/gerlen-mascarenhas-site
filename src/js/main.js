@@ -1,15 +1,13 @@
-/*
-  Script: controle do header (menu mobile, sombra ao rolar e scroll suave)
-  - Toggle do menu mobile (aria-expanded e ocultar/exibir)
-  - Adiciona/remover classe 'scrolled' no header para sombra ao rolar
-  - Smooth scroll para ancôras internas e fechamento do menu mobile ao clicar
-*/
+/**
+ * GERLEN MASCARENHAS - FISIOTERAPIA
+ * Main JavaScript - Professional Edition
+ */
+
 document.addEventListener('DOMContentLoaded', function () {
     const header = document.getElementById('site-header');
     const btnMenu = document.getElementById('btn-menu');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    // Toggle menu mobile
     if (btnMenu && mobileMenu) {
         btnMenu.addEventListener('click', function () {
             const isOpen = btnMenu.getAttribute('aria-expanded') === 'true';
@@ -19,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Sombra ao rolar
     const onScroll = function () {
         if (window.scrollY > 20) {
             header.classList.add('scrolled');
@@ -30,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    // Smooth scroll para links âncora e fechamento do menu mobile ao clicar
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         anchor.addEventListener('click', function (e) {
             const href = anchor.getAttribute('href');
@@ -41,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }
-            // fechar menu mobile se estiver aberto
+            
             if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.add('hidden');
                 btnMenu.setAttribute('aria-expanded', 'false');
@@ -50,8 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // animação de entrada do hero (aplica classes após DOM carregado e pequenos delays)
-    // animar apenas uma vez quando a seção entrar na viewport
     (function observeHeroOnce() {
         const hero = document.getElementById('hero');
         const gerlenImg = document.querySelector('.hero-gerlen');
@@ -64,14 +58,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (entry.isIntersecting) {
                         hero.classList.add('hero-animate');
                         if (gerlenImg) gerlenImg.classList.add('visible');
-                        obs.unobserve(hero); // garante execução única
+                        obs.unobserve(hero);
                     }
                 });
             }, { threshold: 0.15 });
 
             io.observe(hero);
         } else {
-            // fallback: timeout caso browser não suporte IntersectionObserver
             setTimeout(function () {
                 hero.classList.add('hero-animate');
                 if (gerlenImg) gerlenImg.classList.add('visible');
@@ -79,50 +72,38 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     })();
 
-    // Função para animação da seção de dores
     function setupDoresAnimation() {
         const doresSection = document.getElementById('dores');
+        if (!doresSection) return;
+
         const title = doresSection.querySelector('h2');
         const subtitle = doresSection.querySelector('p');
         const cards = doresSection.querySelectorAll('.bg-emerald-50');
 
-        // Adiciona classes para permitir animação
         title.classList.add('dores-title');
         subtitle.classList.add('dores-subtitle');
         cards.forEach(card => card.classList.add('dores-card'));
 
-        // Configuração do Intersection Observer
-        const observerOptions = {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    title.classList.add('animate');
+                    subtitle.classList.add('animate');
+                    cards.forEach(card => card.classList.add('animate'));
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, {
             root: null,
             rootMargin: '0px',
             threshold: 0.15
-        };
+        });
 
-        const observerCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Anima título e subtítulo
-                    title.classList.add('animate');
-                    subtitle.classList.add('animate');
-                    
-                    // Anima cada card
-                    cards.forEach(card => {
-                        card.classList.add('animate');
-                    });
-
-                    // Remove o observer após a animação
-                    observer.unobserve(entry.target);
-                }
-            });
-        };
-
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
         observer.observe(doresSection);
     }
 
     setupDoresAnimation();
 
-    // Carrossel automático de depoimentos (mobile apenas)
     function setupTestimonialsCarousel() {
         const testimonialsGrid = document.querySelector('.testimonials-grid');
         const testimonialCards = document.querySelectorAll('.testimonial-card');
@@ -137,15 +118,11 @@ document.addEventListener('DOMContentLoaded', function () {
             if (window.innerWidth <= 820) {
                 const card = testimonialCards[index];
                 if (card) {
-                    // Calcula a posição do card dentro do container
                     const containerWidth = testimonialsGrid.offsetWidth;
                     const cardLeft = card.offsetLeft;
                     const cardWidth = card.offsetWidth;
-                    
-                    // Centraliza o card no container
                     const scrollPosition = cardLeft - (containerWidth / 2) + (cardWidth / 2);
                     
-                    // Scroll apenas dentro do container, SEM afetar a página
                     testimonialsGrid.scrollTo({
                         left: scrollPosition,
                         behavior: 'smooth'
@@ -161,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         currentIndex = (currentIndex + 1) % testimonialCards.length;
                         scrollToCard(currentIndex);
                     }
-                }, 5000); // Troca a cada 5 segundos
+                }, 5000);
             }
         }
         
@@ -172,7 +149,16 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
         
-        // Pausar auto-scroll quando usuário interage
+        function resetInactivity() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(() => {
+                isUserInteracting = false;
+                if (window.innerWidth <= 820) {
+                    startAutoScroll();
+                }
+            }, 3000);
+        }
+        
         testimonialsGrid.addEventListener('touchstart', () => {
             isUserInteracting = true;
             stopAutoScroll();
@@ -188,24 +174,11 @@ document.addEventListener('DOMContentLoaded', function () {
             stopAutoScroll();
         });
         
-        // Retomar após 3 segundos de inatividade
         let inactivityTimer;
-        
-        function resetInactivity() {
-            clearTimeout(inactivityTimer);
-            inactivityTimer = setTimeout(() => {
-                isUserInteracting = false;
-                if (window.innerWidth <= 820) {
-                    startAutoScroll();
-                }
-            }, 3000);
-        }
-        
         testimonialsGrid.addEventListener('touchend', resetInactivity);
         testimonialsGrid.addEventListener('mouseup', resetInactivity);
         testimonialsGrid.addEventListener('scrollend', resetInactivity);
         
-        // Fallback para navegadores sem scrollend
         let scrollTimeout;
         testimonialsGrid.addEventListener('scroll', () => {
             clearTimeout(scrollTimeout);
@@ -216,10 +189,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 150);
         });
         
-        // Iniciar auto-scroll
         startAutoScroll();
         
-        // Reiniciar ao redimensionar janela
         window.addEventListener('resize', () => {
             stopAutoScroll();
             if (window.innerWidth <= 820) {
