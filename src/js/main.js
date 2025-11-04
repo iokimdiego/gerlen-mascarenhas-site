@@ -121,4 +121,112 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     setupDoresAnimation();
+
+    // Carrossel automático de depoimentos (mobile apenas)
+    function setupTestimonialsCarousel() {
+        const testimonialsGrid = document.querySelector('.testimonials-grid');
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        
+        if (!testimonialsGrid || testimonialCards.length === 0) return;
+        
+        let currentIndex = 0;
+        let autoScrollInterval;
+        let isUserInteracting = false;
+        
+        function scrollToCard(index) {
+            if (window.innerWidth <= 820) {
+                const card = testimonialCards[index];
+                if (card) {
+                    // Calcula a posição do card dentro do container
+                    const containerWidth = testimonialsGrid.offsetWidth;
+                    const cardLeft = card.offsetLeft;
+                    const cardWidth = card.offsetWidth;
+                    
+                    // Centraliza o card no container
+                    const scrollPosition = cardLeft - (containerWidth / 2) + (cardWidth / 2);
+                    
+                    // Scroll apenas dentro do container, SEM afetar a página
+                    testimonialsGrid.scrollTo({
+                        left: scrollPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }
+        
+        function startAutoScroll() {
+            if (window.innerWidth <= 820 && !isUserInteracting) {
+                autoScrollInterval = setInterval(() => {
+                    if (!isUserInteracting) {
+                        currentIndex = (currentIndex + 1) % testimonialCards.length;
+                        scrollToCard(currentIndex);
+                    }
+                }, 5000); // Troca a cada 5 segundos
+            }
+        }
+        
+        function stopAutoScroll() {
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+                autoScrollInterval = null;
+            }
+        }
+        
+        // Pausar auto-scroll quando usuário interage
+        testimonialsGrid.addEventListener('touchstart', () => {
+            isUserInteracting = true;
+            stopAutoScroll();
+        });
+        
+        testimonialsGrid.addEventListener('mousedown', () => {
+            isUserInteracting = true;
+            stopAutoScroll();
+        });
+        
+        testimonialsGrid.addEventListener('scroll', () => {
+            isUserInteracting = true;
+            stopAutoScroll();
+        });
+        
+        // Retomar após 3 segundos de inatividade
+        let inactivityTimer;
+        
+        function resetInactivity() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(() => {
+                isUserInteracting = false;
+                if (window.innerWidth <= 820) {
+                    startAutoScroll();
+                }
+            }, 3000);
+        }
+        
+        testimonialsGrid.addEventListener('touchend', resetInactivity);
+        testimonialsGrid.addEventListener('mouseup', resetInactivity);
+        testimonialsGrid.addEventListener('scrollend', resetInactivity);
+        
+        // Fallback para navegadores sem scrollend
+        let scrollTimeout;
+        testimonialsGrid.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                if (isUserInteracting) {
+                    resetInactivity();
+                }
+            }, 150);
+        });
+        
+        // Iniciar auto-scroll
+        startAutoScroll();
+        
+        // Reiniciar ao redimensionar janela
+        window.addEventListener('resize', () => {
+            stopAutoScroll();
+            if (window.innerWidth <= 820) {
+                startAutoScroll();
+            }
+        });
+    }
+    
+    setupTestimonialsCarousel();
 });
