@@ -104,6 +104,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setupDoresAnimation();
 
+    // Unified Scroll Animation System
+    function setupScrollAnimations() {
+        const animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in');
+        
+        if (animatedElements.length === 0) return;
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        animatedElements.forEach(element => {
+            observer.observe(element);
+        });
+    }
+    
+    setupScrollAnimations();
+
     function setupTestimonialsCarousel() {
         const testimonialsGrid = document.querySelector('.testimonials-grid');
         const testimonialCards = document.querySelectorAll('.testimonial-card');

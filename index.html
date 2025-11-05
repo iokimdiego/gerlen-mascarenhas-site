@@ -249,7 +249,7 @@
 </section>
 
   <section id="chamada-dores" class="chamada-dores" aria-label="Chamada final">
-    <div class="chamada-box">
+    <div class="chamada-box fade-in">
       <div class="chamada-grid">
         <div class="chamada-paragraph">
           <h2 class="chamada-heading">Seu corpo fala e merece ser ouvido com atenção.</h2>
@@ -281,7 +281,7 @@
       <!-- Primeira linha: Mosaico (50%) + Texto (50%) -->
       <div class="grid md:grid-cols-2 gap-12 mb-20 items-center">
         <!-- Coluna Esquerda: Mosaico -->
-        <div class="mosaic-grid-wrapper">
+        <div class="mosaic-grid-wrapper fade-in-left">
           <div class="mosaic-grid">
             <div class="mosaic-item a1">
               <img src="assets/images/mosaicoa1.jpg" alt="Dra. Gerlen" loading="lazy">
@@ -299,7 +299,7 @@
         </div>
         
         <!-- Coluna Direita: Título + 4 Parágrafos -->
-        <div class="space-y-6">
+        <div class="space-y-6 fade-in-right">
           <h2 class="text-3xl md:text-4xl font-semibold">Quem é a Dra. Gerlen Mascarenhas?</h2>
           
           <p class="text-lg text-gray-700 leading-relaxed">
@@ -323,7 +323,7 @@
       <!-- Segunda linha: Texto (50%) + Imagem dra-gerlen.jpg (50%) -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <!-- Coluna Esquerda: Título + 1 Parágrafo + CTA -->
-        <div class="space-y-6">
+        <div class="space-y-6 fade-in-left">
           <h2 class="text-2xl md:text-3xl font-semibold text-emerald-900">O que a Dra. Gerlen pode fazer por você?</h2>
           
           <p class="text-lg text-gray-700 leading-relaxed">
@@ -346,7 +346,7 @@
         </div>
         
         <!-- Coluna Direita: Imagem da Dra. Gerlen -->
-        <div class="relative">
+        <div class="relative scale-in">
           <img src="assets/images/dra-gerlen.jpg" alt="Dra. Gerlen Mascarenhas" class="rounded-2xl shadow-lg w-full h-auto object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-emerald-900/10 to-transparent rounded-2xl"></div>
         </div>
@@ -357,7 +357,7 @@
     <!-- Seção: Serviços -->
     <section id="services" class="services-section py-20">
       <div class="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16 fade-in">
           <h2 class="text-3xl md:text-4xl font-semibold text-emerald-900 mb-6">
             Serviços Especializados
           </h2>
@@ -368,7 +368,7 @@
 
         <div class="services-grid">
           <!-- Serviço 1: Fisioterapia Domiciliar -->
-          <div class="service-card">
+          <div class="service-card fade-in stagger-delay-1">
             <div class="service-icon">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -382,7 +382,7 @@
           </div>
 
           <!-- Serviço 2: Pilates Terapêutico -->
-          <div class="service-card">
+          <div class="service-card fade-in stagger-delay-2">
             <div class="service-icon">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -395,7 +395,7 @@
           </div>
 
           <!-- Serviço 3: Reabilitação Pós-Cirúrgica -->
-          <div class="service-card">
+          <div class="service-card fade-in stagger-delay-3">
             <div class="service-icon">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2V22M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6313 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3687 16.9749 13.0251C17.6313 13.6815 18 14.5717 18 15.5C18 16.4283 17.6313 17.3185 16.9749 17.9749C16.3185 18.6313 15.4283 19 14.5 19H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -408,7 +408,7 @@
           </div>
 
           <!-- Serviço 4: Saúde da Mulher -->
-          <div class="service-card">
+          <div class="service-card fade-in stagger-delay-4">
             <div class="service-icon">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.57831 8.50903 2.99871 7.05 2.99871C5.59096 2.99871 4.19169 3.57831 3.16 4.61C2.1283 5.64169 1.54871 7.04097 1.54871 8.5C1.54871 9.95903 2.1283 11.3583 3.16 12.39L4.22 13.45L12 21.23L19.78 13.45L20.84 12.39C21.351 11.8792 21.7564 11.2728 22.0329 10.6054C22.3095 9.93789 22.4518 9.2225 22.4518 8.5C22.4518 7.7775 22.3095 7.06211 22.0329 6.39464C21.7564 5.72716 21.351 5.12075 20.84 4.61Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -421,7 +421,7 @@
           </div>
 
           <!-- Serviço 5: Fisioterapia para Idosos -->
-          <div class="service-card">
+          <div class="service-card fade-in stagger-delay-5">
             <div class="service-icon">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -437,7 +437,7 @@
           </div>
 
           <!-- Serviço 6: Tratamento de Dores Crônicas -->
-          <div class="service-card">
+          <div class="service-card fade-in stagger-delay-6">
             <div class="service-icon">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -457,7 +457,7 @@
     <!-- Seção: Depoimentos -->
     <section id="testimonials" class="testimonials-section py-20">
       <div class="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16 fade-in">
           <h2 class="text-3xl md:text-4xl font-semibold text-emerald-900 mb-6">
             O Que Dizem Nossas Pacientes
           </h2>
@@ -468,7 +468,7 @@
 
         <div class="testimonials-grid">
           <!-- Depoimento 1 -->
-          <div class="testimonial-card">
+          <div class="testimonial-card scale-in stagger-delay-1">
             <div class="testimonial-quote">
               <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6 17H8L8 14C8 10.686 10.686 8 14 8V5C9.029 5 5 9.029 5 14V17H6ZM13 17H15L15 14C15 10.686 17.686 8 21 8V5C16.029 5 12 9.029 12 14V17H13Z"/>
@@ -489,7 +489,7 @@
           </div>
 
           <!-- Depoimento 2 -->
-          <div class="testimonial-card">
+          <div class="testimonial-card scale-in stagger-delay-2">
             <div class="testimonial-quote">
               <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6 17H8L8 14C8 10.686 10.686 8 14 8V5C9.029 5 5 9.029 5 14V17H6ZM13 17H15L15 14C15 10.686 17.686 8 21 8V5C16.029 5 12 9.029 12 14V17H13Z"/>
@@ -510,7 +510,7 @@
           </div>
 
           <!-- Depoimento 3 -->
-          <div class="testimonial-card">
+          <div class="testimonial-card scale-in stagger-delay-3">
             <div class="testimonial-quote">
               <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6 17H8L8 14C8 10.686 10.686 8 14 8V5C9.029 5 5 9.029 5 14V17H6ZM13 17H15L15 14C15 10.686 17.686 8 21 8V5C16.029 5 12 9.029 12 14V17H13Z"/>
@@ -541,7 +541,7 @@
     <!-- Seção: Instagram -->
     <section id="instagram" class="instagram-section py-20">
       <div class="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
-        <div class="text-center mb-12">
+        <div class="text-center mb-12 fade-in">
           <h2 class="text-3xl md:text-4xl font-semibold text-emerald-900 mb-6">
             Acompanhe no Instagram
           </h2>
@@ -561,7 +561,7 @@
 
         <!-- Grid de posts do Instagram (placeholder) -->
         <div class="instagram-grid">
-          <div class="instagram-post">
+          <div class="instagram-post scale-in stagger-delay-1">
             <img src="assets/images/mosaicoa1.jpg" alt="Post Instagram 1" loading="lazy">
             <div class="instagram-overlay">
               <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -569,7 +569,7 @@
               </svg>
             </div>
           </div>
-          <div class="instagram-post">
+          <div class="instagram-post scale-in stagger-delay-2">
             <img src="assets/images/mosaicoa23.jpg" alt="Post Instagram 2" loading="lazy">
             <div class="instagram-overlay">
               <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -577,7 +577,7 @@
               </svg>
             </div>
           </div>
-          <div class="instagram-post">
+          <div class="instagram-post scale-in stagger-delay-3">
             <img src="assets/images/mosaicob12.jpg" alt="Post Instagram 3" loading="lazy">
             <div class="instagram-overlay">
               <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -585,7 +585,7 @@
               </svg>
             </div>
           </div>
-          <div class="instagram-post">
+          <div class="instagram-post scale-in stagger-delay-4">
             <img src="assets/images/mosaicob3.jpg" alt="Post Instagram 4" loading="lazy">
             <div class="instagram-overlay">
               <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -600,7 +600,7 @@
     <!-- Seção: Contato -->
     <section id="contact" class="contact-section py-20">
       <div class="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16 fade-in">
           <h2 class="text-3xl md:text-4xl font-semibold text-emerald-900 mb-6">
             Entre em Contato
           </h2>
@@ -611,7 +611,7 @@
 
         <div class="contact-wrapper">
           <!-- Coluna Esquerda: Informações de Contato -->
-          <div class="contact-info">
+          <div class="contact-info fade-in-left">
             <h3 class="contact-info-title">Informações de Contato</h3>
             <p class="contact-info-text">
               Entre em contato por telefone, WhatsApp ou preencha o formulário ao lado.
@@ -662,7 +662,7 @@
           </div>
 
           <!-- Coluna Direita: Formulário -->
-          <div class="contact-form-wrapper">
+          <div class="contact-form-wrapper fade-in-right">
             <form id="contact-form" class="contact-form">
               <div class="form-group">
                 <label for="name" class="form-label">Nome Completo</label>
