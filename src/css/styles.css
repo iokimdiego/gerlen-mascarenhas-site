@@ -1429,6 +1429,40 @@ h1, h2, h3, h4, h5, h6 {
         padding: 0.75rem 1.5rem;
     }
 
+    /* Oculta os 3 primeiros mosaicos no mobile */
+    .mosaic-grid .mosaic-item:nth-child(-n+3) {
+        display: none;
+    }
+
+    /* Transforma o b3 em círculo perfeito com foco no rosto */
+    .mosaic-grid {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mosaic-grid .mosaic-item:nth-child(4) {
+        width: 280px;
+        height: 280px;
+        max-width: 80vw;
+        max-height: 80vw;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mosaic-grid .mosaic-item:nth-child(4) img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 25%;
+        transform: scale(1.6);
+        filter: grayscale(100%);
+    }
+
     .instagram-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 0.75rem;
