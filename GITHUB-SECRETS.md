@@ -79,7 +79,7 @@ Valor: noreply@gerlenmascarenhas.com.br
 
 ```
 Nome: SMTP_PASSWORD
-Valor: Alencar2!
+Valor: [SUA_SENHA_DO_CPANEL_AQUI]
 ```
 
 **⚠️ IMPORTANTE:**
@@ -87,6 +87,7 @@ Valor: Alencar2!
 - No HostGator: Use a senha do e-mail criado no cPanel
 - No Gmail: Use a "Senha de app" (16 dígitos)
 - **NUNCA** compartilhe esta senha
+- **NUNCA** coloque a senha real neste arquivo!
 
 ---
 
