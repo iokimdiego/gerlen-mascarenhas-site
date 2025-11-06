@@ -43,7 +43,7 @@ Valor: iokimdiego@hotmail.com
 
 ```
 Nome: SMTP_HOST
-Valor: mail.gerlenmascarenhas.com.br
+Valor: smtp.titan.email
 ```
 
 (Ou `smtp.gmail.com` se usar Gmail)
@@ -52,7 +52,7 @@ Valor: mail.gerlenmascarenhas.com.br
 
 ```
 Nome: SMTP_PORT
-Valor: 465
+Valor: 587
 ```
 
 (Ou `587` se usar TLS)
@@ -61,7 +61,7 @@ Valor: 465
 
 ```
 Nome: SMTP_SECURE
-Valor: ssl
+Valor: tls
 ```
 
 (Ou `tls` se usar porta 587)
@@ -79,7 +79,7 @@ Valor: noreply@gerlenmascarenhas.com.br
 
 ```
 Nome: SMTP_PASSWORD
-Valor: [SUA SENHA REAL AQUI]
+Valor: Alencar2!
 ```
 
 **⚠️ IMPORTANTE:**
