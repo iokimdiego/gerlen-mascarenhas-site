@@ -71,18 +71,27 @@ echo "<hr>";
 // Sugestões de configuração
 echo "<h2>💡 Configurações Alternativas para Testar</h2>";
 
-echo "<h3>HostGator - Opção 1:</h3>";
+echo "<h3>HostGator Titan Email - Opção 1 (RECOMENDADO):</h3>";
 echo "<pre>";
-echo "SMTP_HOST = mail.gerlenmascarenhas.com.br\n";
+echo "SMTP_HOST = smtp.titan.email\n";
+echo "SMTP_PORT = 587\n";
+echo "SMTP_SECURE = tls\n";
+echo "SMTP_USERNAME = noreply@gerlenmascarenhas.com.br\n";
+echo "SMTP_PASSWORD = [senha do e-mail criado no cPanel]\n";
+echo "</pre>";
+
+echo "<h3>HostGator Titan Email - Opção 2 (SSL):</h3>";
+echo "<pre>";
+echo "SMTP_HOST = smtp.titan.email\n";
 echo "SMTP_PORT = 465\n";
 echo "SMTP_SECURE = ssl\n";
 echo "SMTP_USERNAME = noreply@gerlenmascarenhas.com.br\n";
 echo "SMTP_PASSWORD = [senha do e-mail criado no cPanel]\n";
 echo "</pre>";
 
-echo "<h3>HostGator - Opção 2:</h3>";
+echo "<h3>Servidor Antigo (pode não funcionar):</h3>";
 echo "<pre>";
-echo "SMTP_HOST = smtp.hostgator.com\n";
+echo "SMTP_HOST = mail.gerlenmascarenhas.com.br\n";
 echo "SMTP_PORT = 587\n";
 echo "SMTP_SECURE = tls\n";
 echo "SMTP_USERNAME = noreply@gerlenmascarenhas.com.br\n";

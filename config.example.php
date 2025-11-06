@@ -18,12 +18,12 @@ define('DOMINIO', 'gerlenmascarenhas.com.br');
 // CONFIGURAÇÕES SMTP
 // ============================================
 
-// Opção 1: E-mail do Domínio (HostGator) - RECOMENDADO
-define('SMTP_HOST', 'mail.gerlenmascarenhas.com.br'); // ou smtp.hostgator.com
-define('SMTP_PORT', 465); // 465 para SSL ou 587 para TLS
-define('SMTP_SECURE', 'ssl'); // 'ssl' ou 'tls'
-define('SMTP_USERNAME', 'noreply@gerlenmascarenhas.com.br');
-define('SMTP_PASSWORD', 'SUA_SENHA_AQUI'); // ← ALTERE COM SUA SENHA REAL
+// Opção 1: E-mail do Domínio (HostGator Titan Email) - RECOMENDADO
+define('SMTP_HOST', 'smtp.titan.email'); // Servidor SMTP oficial HostGator
+define('SMTP_PORT', 587); // 587 para TLS (recomendado) ou 465 para SSL
+define('SMTP_SECURE', 'tls'); // 'tls' ou 'ssl'
+define('SMTP_USERNAME', 'noreply@gerlenmascarenhas.com.br'); // E-mail completo
+define('SMTP_PASSWORD', 'SUA_SENHA_AQUI'); // ← SENHA DO E-MAIL DO CPANEL
 
 // Opção 2: Gmail (descomente e configure se preferir)
 /*

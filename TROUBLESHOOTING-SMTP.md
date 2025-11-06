@@ -39,34 +39,34 @@ Isso mostrará todas as configurações e identificará o problema.
 
 Edite o arquivo `config.php` e teste estas configurações:
 
-#### **Opção A: HostGator com porta 587 (TLS)**
+#### **Opção A: HostGator Titan Email (OFICIAL) ✅**
+
+```php
+define('SMTP_HOST', 'smtp.titan.email');  // ← Servidor oficial
+define('SMTP_PORT', 587);  // TLS (recomendado)
+define('SMTP_SECURE', 'tls');
+define('SMTP_USERNAME', 'noreply@gerlenmascarenhas.com.br');
+define('SMTP_PASSWORD', 'SUA_SENHA_DO_CPANEL');
+```
+
+#### **Opção B: HostGator Titan Email com SSL**
+
+```php
+define('SMTP_HOST', 'smtp.titan.email');
+define('SMTP_PORT', 465);  // SSL
+define('SMTP_SECURE', 'ssl');
+define('SMTP_USERNAME', 'noreply@gerlenmascarenhas.com.br');
+define('SMTP_PASSWORD', 'SUA_SENHA_DO_CPANEL');
+```
+
+#### **Opção C: Servidor Antigo (pode não funcionar)**
 
 ```php
 define('SMTP_HOST', 'mail.gerlenmascarenhas.com.br');
-define('SMTP_PORT', 587);  // ← MUDOU
-define('SMTP_SECURE', 'tls');  // ← MUDOU
-define('SMTP_USERNAME', 'noreply@gerlenmascarenhas.com.br');
-define('SMTP_PASSWORD', 'SUA_SENHA_REAL');
-```
-
-#### **Opção B: HostGator servidor alternativo**
-
-```php
-define('SMTP_HOST', 'smtp.hostgator.com');  // ← MUDOU
 define('SMTP_PORT', 587);
 define('SMTP_SECURE', 'tls');
 define('SMTP_USERNAME', 'noreply@gerlenmascarenhas.com.br');
-define('SMTP_PASSWORD', 'SUA_SENHA_REAL');
-```
-
-#### **Opção C: Sem autenticação TLS (menos seguro)**
-
-```php
-define('SMTP_HOST', 'mail.gerlenmascarenhas.com.br');
-define('SMTP_PORT', 25);  // ← MUDOU
-define('SMTP_SECURE', '');  // ← MUDOU (vazio)
-define('SMTP_USERNAME', 'noreply@gerlenmascarenhas.com.br');
-define('SMTP_PASSWORD', 'SUA_SENHA_REAL');
+define('SMTP_PASSWORD', 'SUA_SENHA_DO_CPANEL');
 ```
 
 ---
@@ -126,9 +126,9 @@ Marque conforme for testando:
 
 - [ ] O e-mail existe no cPanel?
 - [ ] A senha está correta (redefinir se necessário)?
+- [ ] Testou **smtp.titan.email** (servidor oficial)?
 - [ ] Testou porta 587 com TLS?
-- [ ] Testou `smtp.hostgator.com`?
-- [ ] Testou porta 25 sem SSL/TLS?
+- [ ] Testou porta 465 com SSL?
 - [ ] Considerou usar Gmail?
 - [ ] Rodou o `debug-smtp.php` para diagnóstico?
 
@@ -136,11 +136,11 @@ Marque conforme for testando:
 
 ## 🔧 Configurações Testadas e Funcionais
 
-### **HostGator (Mais Comum):**
+### **HostGator Titan Email (OFICIAL) ✅**
 
 ```php
-// CONFIGURAÇÃO 1
-SMTP_HOST = mail.gerlenmascarenhas.com.br
+// CONFIGURAÇÃO RECOMENDADA
+SMTP_HOST = smtp.titan.email
 SMTP_PORT = 587
 SMTP_SECURE = tls
 SMTP_USERNAME = noreply@gerlenmascarenhas.com.br
