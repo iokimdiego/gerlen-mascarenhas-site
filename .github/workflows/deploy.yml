@@ -1,4 +1,4 @@
-name: 🚀 Deploy to HostGator via FTP
+name: 🚀 Deploy para o HostGator via FTP
 
 on:
   push:
