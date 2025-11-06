@@ -34,7 +34,6 @@ Valor: contato@gerlenmascarenhas.com.br
 Nome: EMAIL_COPIA
 Valor: iokimdiego@hotmail.com
 ```
-
 ---
 
 ### **3. Configurar Secrets SMTP**
