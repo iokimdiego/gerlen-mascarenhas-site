@@ -1,8 +1,17 @@
 <?php
 /**
  * GERLEN MASCARENHAS - Sistema de Envio de E-mails
- * Backend PHP para formulário de contato
+ * Backend PHP com PHPMailer
+ * Versão 3.0 - Usando PHPMailer para envio confiável
  */
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
 
 // Configurações de segurança
 header('Content-Type: application/json; charset=utf-8');
@@ -14,6 +23,33 @@ header('Access-Control-Allow-Headers: Content-Type');
 define('EMAIL_DESTINO', 'contato@gerlenmascarenhas.com.br');
 define('EMAIL_COPIA', 'iokimdiego@hotmail.com'); // E-mail adicional (opcional)
 define('NOME_REMETENTE', 'Site Dra. Gerlen Mascarenhas');
+define('DOMINIO', 'gerlenmascarenhas.com.br');
+
+// Configurações SMTP (Configure com suas credenciais)
+// Opção 1: E-mail do próprio domínio (HostGator)
+define('SMTP_HOST', 'mail.gerlenmascarenhas.com.br'); // ou smtp.hostgator.com
+define('SMTP_PORT', 465); // 465 para SSL ou 587 para TLS
+define('SMTP_SECURE', 'ssl'); // 'ssl' ou 'tls'
+define('SMTP_USERNAME', 'noreply@gerlenmascarenhas.com.br'); // E-mail criado no cPanel
+define('SMTP_PASSWORD', 'Alencar2!'); // Senha do e-mail
+
+// Opção 2: Gmail (caso queira usar Gmail - comentar/descomentar conforme necessário)
+// define('SMTP_HOST', 'smtp.gmail.com');
+// define('SMTP_PORT', 587);
+// define('SMTP_SECURE', 'tls');
+// define('SMTP_USERNAME', 'seu-email@gmail.com');
+// define('SMTP_PASSWORD', 'sua-senha-de-app'); // Use "Senha de app" do Google
+
+// Debug mode
+define('DEBUG_MODE', true);
+$debug_log = [];
+
+function logDebug($message) {
+    global $debug_log;
+    if (DEBUG_MODE) {
+        $debug_log[] = date('Y-m-d H:i:s') . ' - ' . $message;
+    }
+}
 
 // Função para sanitizar dados
 function sanitizeInput($data) {
@@ -80,6 +116,9 @@ if (!empty($errors)) {
     ]);
     exit;
 }
+
+logDebug('Validações concluídas com sucesso');
+logDebug("Iniciando envio via PHPMailer");
 
 // Preparar o e-mail
 $assunto = '📧 Nova Mensagem do Site - ' . $name;
@@ -208,23 +247,64 @@ $corpo = "
 </html>
 ";
 
-// Headers do e-mail
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type: text/html; charset=utf-8" . "\r\n";
-$headers .= "From: " . NOME_REMETENTE . " <noreply@gerlenmascarenhas.com.br>" . "\r\n";
-$headers .= "Reply-To: " . $email . "\r\n";
-$headers .= "X-Mailer: PHP/" . phpversion();
+// ============================================
+// ENVIO COM PHPMAILER
+// ============================================
 
-// Enviar e-mail principal
-$enviado = mail(EMAIL_DESTINO, $assunto, $corpo, $headers);
-
-// Enviar cópia (opcional)
-if (defined('EMAIL_COPIA') && !empty(EMAIL_COPIA)) {
-    mail(EMAIL_COPIA, $assunto, $corpo, $headers);
-}
-
-// E-mail de confirmação para o usuário
-if ($enviado) {
+try {
+    logDebug('Criando instância do PHPMailer');
+    
+    // Criar instância do PHPMailer
+    $mail = new PHPMailer(true);
+    
+    // Configurações do servidor SMTP
+    $mail->isSMTP();
+    $mail->Host = SMTP_HOST;
+    $mail->SMTPAuth = true;
+    $mail->Username = SMTP_USERNAME;
+    $mail->Password = SMTP_PASSWORD;
+    $mail->SMTPSecure = SMTP_SECURE;
+    $mail->Port = SMTP_PORT;
+    $mail->CharSet = 'UTF-8';
+    
+    // Debug SMTP (remover em produção)
+    if (DEBUG_MODE) {
+        $mail->SMTPDebug = 2; // 0 = off, 1 = client, 2 = client and server
+        $mail->Debugoutput = function($str, $level) {
+            logDebug("SMTP Debug: $str");
+        };
+    }
+    
+    logDebug('Configurações SMTP aplicadas');
+    
+    // Remetente
+    $mail->setFrom(SMTP_USERNAME, NOME_REMETENTE);
+    $mail->addReplyTo($email, $name);
+    
+    // Destinatários
+    $mail->addAddress(EMAIL_DESTINO);
+    if (defined('EMAIL_COPIA') && !empty(EMAIL_COPIA)) {
+        $mail->addCC(EMAIL_COPIA);
+    }
+    
+    logDebug('Destinatários configurados');
+    
+    // Conteúdo do e-mail
+    $mail->isHTML(true);
+    $mail->Subject = $assunto;
+    $mail->Body = $corpo;
+    $mail->AltBody = strip_tags($corpo); // Versão texto puro
+    
+    // Enviar e-mail principal
+    logDebug('Tentando enviar e-mail principal...');
+    $mail->send();
+    logDebug('E-mail principal enviado com sucesso!');
+    
+    // E-mail de confirmação para o usuário
+    $mail->clearAddresses();
+    $mail->clearCCs();
+    $mail->addAddress($email, $name);
+    
     $assuntoConfirmacao = '✅ Mensagem Recebida - Dra. Gerlen Mascarenhas';
     $corpoConfirmacao = "
     <!DOCTYPE html>
@@ -233,9 +313,10 @@ if ($enviado) {
         <meta charset='UTF-8'>
         <style>
             body { font-family: Arial, sans-serif; background-color: #f5efe6; margin: 0; padding: 0; }
-            .container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; }
+            .container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
             .header { background: linear-gradient(135deg, #3f7052, #2e5a40); color: #ffffff; padding: 30px 20px; text-align: center; }
             .content { padding: 30px 20px; }
+            .message-box { background: #f5efe6; padding: 15px; border-radius: 8px; margin: 15px 0; }
         </style>
     </head>
     <body>
@@ -246,36 +327,65 @@ if ($enviado) {
             <div class='content'>
                 <p>Olá <strong>{$name}</strong>,</p>
                 <p>Recebemos sua mensagem e entraremos em contato em breve.</p>
-                <p style='background: #f5efe6; padding: 15px; border-radius: 8px;'>
-                    <strong>Sua mensagem:</strong><br>
-                    {$message}
-                </p>
-                <p>Atenciosamente,<br><strong>Dra. Gerlen Mascarenhas</strong></p>
+                <div class='message-box'>
+                    <strong>Sua mensagem:</strong><br>{$message}
+                </div>
+                <p>Atenciosamente,<br><strong>Dra. Gerlen Mascarenhas</strong><br>
+                Fisioterapeuta | (92) 99255-5753</p>
             </div>
         </div>
     </body>
     </html>
     ";
     
-    $headersConfirmacao = "MIME-Version: 1.0" . "\r\n";
-    $headersConfirmacao .= "Content-type: text/html; charset=utf-8" . "\r\n";
-    $headersConfirmacao .= "From: " . NOME_REMETENTE . " <noreply@gerlenmascarenhas.com.br>" . "\r\n";
+    $mail->Subject = $assuntoConfirmacao;
+    $mail->Body = $corpoConfirmacao;
+    $mail->AltBody = strip_tags($corpoConfirmacao);
     
-    mail($email, $assuntoConfirmacao, $corpoConfirmacao, $headersConfirmacao);
-}
-
-// Resposta JSON
-if ($enviado) {
+    logDebug('Tentando enviar e-mail de confirmação...');
+    $mail->send();
+    logDebug('E-mail de confirmação enviado com sucesso!');
+    
+    // Salvar log em arquivo
+    if (DEBUG_MODE) {
+        $logFile = 'email-logs.txt';
+        $logContent = "\n\n=== " . date('Y-m-d H:i:s') . " ===\n";
+        $logContent .= "Nome: $name\n";
+        $logContent .= "Email: $email\n";
+        $logContent .= "Status: SUCESSO\n";
+        $logContent .= implode("\n", $debug_log) . "\n";
+        file_put_contents($logFile, $logContent, FILE_APPEND);
+    }
+    
+    // Resposta de sucesso
     http_response_code(200);
     echo json_encode([
         'success' => true,
-        'message' => 'Mensagem enviada com sucesso! Entraremos em contato em breve.'
+        'message' => 'Mensagem enviada com sucesso! Entraremos em contato em breve.',
+        'debug' => DEBUG_MODE ? $debug_log : null
     ]);
-} else {
+    
+} catch (Exception $e) {
+    logDebug('ERRO ao enviar e-mail: ' . $e->getMessage());
+    logDebug('Stack trace: ' . $e->getTraceAsString());
+    
+    // Salvar log de erro
+    if (DEBUG_MODE) {
+        $logFile = 'email-logs.txt';
+        $logContent = "\n\n=== ERRO " . date('Y-m-d H:i:s') . " ===\n";
+        $logContent .= "Nome: $name\n";
+        $logContent .= "Email: $email\n";
+        $logContent .= "Erro: " . $e->getMessage() . "\n";
+        $logContent .= implode("\n", $debug_log) . "\n";
+        file_put_contents($logFile, $logContent, FILE_APPEND);
+    }
+    
     http_response_code(500);
     echo json_encode([
         'success' => false,
-        'message' => 'Erro ao enviar mensagem. Tente novamente mais tarde.'
+        'message' => 'Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato pelo WhatsApp.',
+        'error' => DEBUG_MODE ? $e->getMessage() : 'Erro interno do servidor',
+        'debug' => DEBUG_MODE ? $debug_log : null
     ]);
 }
 ?>

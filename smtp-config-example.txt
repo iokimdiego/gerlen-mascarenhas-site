@@ -1,0 +1,93 @@
+========================================
+CONFIGURAÇÕES SMTP PARA SEND-EMAIL.PHP
+========================================
+
+IMPORTANTE: Edite o arquivo send-email.php e configure uma das opções abaixo:
+
+========================================
+OPÇÃO 1: E-MAIL DO PRÓPRIO DOMÍNIO (HOSTGATOR)
+========================================
+
+1. Acesse o cPanel do HostGator
+2. Vá em "Contas de E-mail" e crie um e-mail: noreply@gerlenmascarenhas.com.br
+3. Configure no send-email.php:
+
+define('SMTP_HOST', 'mail.gerlenmascarenhas.com.br');
+define('SMTP_PORT', 465);
+define('SMTP_SECURE', 'ssl');
+define('SMTP_USERNAME', 'noreply@gerlenmascarenhas.com.br');
+define('SMTP_PASSWORD', 'SENHA_QUE_VOCE_CRIOU');
+
+OU
+
+define('SMTP_HOST', 'smtp.hostgator.com');
+define('SMTP_PORT', 587);
+define('SMTP_SECURE', 'tls');
+define('SMTP_USERNAME', 'noreply@gerlenmascarenhas.com.br');
+define('SMTP_PASSWORD', 'SENHA_QUE_VOCE_CRIOU');
+
+========================================
+OPÇÃO 2: GMAIL (MAIS CONFIÁVEL)
+========================================
+
+1. Acesse sua conta Google
+2. Vá em: https://myaccount.google.com/security
+3. Ative "Verificação em duas etapas"
+4. Vá em "Senhas de app" e gere uma senha para "Correio"
+5. Configure no send-email.php:
+
+define('SMTP_HOST', 'smtp.gmail.com');
+define('SMTP_PORT', 587);
+define('SMTP_SECURE', 'tls');
+define('SMTP_USERNAME', 'seu-email@gmail.com');
+define('SMTP_PASSWORD', 'SENHA_DE_APP_GERADA');
+
+========================================
+OPÇÃO 3: OUTLOOK/HOTMAIL
+========================================
+
+define('SMTP_HOST', 'smtp-mail.outlook.com');
+define('SMTP_PORT', 587);
+define('SMTP_SECURE', 'tls');
+define('SMTP_USERNAME', 'seu-email@outlook.com');
+define('SMTP_PASSWORD', 'SUA_SENHA');
+
+========================================
+COMO TESTAR
+========================================
+
+1. Configure as credenciais SMTP no send-email.php
+2. Preencha o formulário no site
+3. Verifique o arquivo email-logs.txt para debug
+4. Se houver erro, leia a mensagem de erro no log
+
+========================================
+TROUBLESHOOTING
+========================================
+
+ERRO: "SMTP connect() failed"
+- Verifique se o host SMTP está correto
+- Tente trocar a porta (587 ou 465)
+- Verifique se o firewall não está bloqueando
+
+ERRO: "Authentication failed"
+- Verifique usuário e senha
+- No Gmail, use "Senha de app" (não a senha normal)
+- Verifique se a conta existe
+
+ERRO: "Could not instantiate mail function"
+- Verifique se os arquivos PHPMailer estão na pasta phpmailer/src/
+
+========================================
+DEBUG MODE
+========================================
+
+Para ativar debug detalhado, no send-email.php:
+
+define('DEBUG_MODE', true);
+
+Para desativar em produção:
+
+define('DEBUG_MODE', false);
+
+Os logs serão salvos em: email-logs.txt
