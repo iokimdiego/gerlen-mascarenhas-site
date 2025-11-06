@@ -1,0 +1,20 @@
+# Proteger arquivo de configuração
+
+<Files "config.php">
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Proteger logs
+
+<Files "email-logs.txt">
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Proteger arquivos sensíveis
+
+<FilesMatch "\.(env|log|bak|backup|sql|json)$">
+Order Allow,Deny
+Deny from all
+</FilesMatch>

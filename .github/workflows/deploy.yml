@@ -15,7 +15,27 @@ jobs:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: 📂 Sync files via FTP
+      - name: � Create config.php from secrets
+        run: |
+          cat > config.php << 'EOF'
+          <?php
+          define('EMAIL_DESTINO', '${{ secrets.EMAIL_DESTINO }}');
+          define('EMAIL_COPIA', '${{ secrets.EMAIL_COPIA }}');
+          define('NOME_REMETENTE', 'Site Dra. Gerlen Mascarenhas');
+          define('DOMINIO', 'gerlenmascarenhas.com.br');
+          define('SMTP_HOST', '${{ secrets.SMTP_HOST }}');
+          define('SMTP_PORT', ${{ secrets.SMTP_PORT }});
+          define('SMTP_SECURE', '${{ secrets.SMTP_SECURE }}');
+          define('SMTP_USERNAME', '${{ secrets.SMTP_USERNAME }}');
+          define('SMTP_PASSWORD', '${{ secrets.SMTP_PASSWORD }}');
+          define('DEBUG_MODE', false);
+          define('MAX_MESSAGE_LENGTH', 5000);
+          define('MIN_MESSAGE_LENGTH', 10);
+          define('ALLOWED_ORIGINS', '*');
+          ?>
+          EOF
+
+      - name: �📂 Sync files via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -33,7 +53,11 @@ jobs:
             **/.github/**
             **/README.md
             **/ANALISE-MELHORIAS.md
+            **/SETUP-SEGURO.md
+            **/PHPMAILER-SETUP.md
             **/ref/**
             **/.vscode/**
             **/.DS_Store
             **/Thumbs.db
+            **/test-phpmailer.php
+            **/email-logs.txt

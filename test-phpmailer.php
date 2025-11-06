@@ -12,31 +12,45 @@ require 'phpmailer/src/Exception.php';
 require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
 
+// Carregar configurações
+if (!file_exists('config.php')) {
+    echo "<h1 style='color: red;'>❌ Erro de Configuração</h1>";
+    echo "<hr>";
+    echo "<p><strong>O arquivo config.php não foi encontrado!</strong></p>";
+    echo "<p>Siga estas instruções:</p>";
+    echo "<ol>";
+    echo "<li>Copie o arquivo <code>config.example.php</code></li>";
+    echo "<li>Renomeie a cópia para <code>config.php</code></li>";
+    echo "<li>Edite o <code>config.php</code> e configure suas credenciais SMTP</li>";
+    echo "<li>Recarregue esta página</li>";
+    echo "</ol>";
+    exit;
+}
+
+require 'config.php';
+
 echo "<h1>🧪 Teste PHPMailer</h1>";
 echo "<hr>";
 
-// ========================================
-// CONFIGURAÇÕES - ALTERE AQUI
-// ========================================
-$smtp_host = 'mail.gerlenmascarenhas.com.br'; // ou smtp.gmail.com
-$smtp_port = 465; // 465 ou 587
-$smtp_secure = 'ssl'; // ssl ou tls
-$smtp_username = 'noreply@gerlenmascarenhas.com.br'; // seu e-mail
-$smtp_password = 'Alencar2!'; // sua senha
+// Usar configurações do config.php
+$smtp_host = SMTP_HOST;
+$smtp_port = SMTP_PORT;
+$smtp_secure = SMTP_SECURE;
+$smtp_username = SMTP_USERNAME;
+$smtp_password = SMTP_PASSWORD;
+$email_destino = EMAIL_COPIA; // Usa o e-mail de cópia como destino do teste
 
-$email_destino = 'iokimdiego@hotmail.com'; // E-mail para receber o teste
-// ========================================
-
-echo "<strong>Configurações:</strong><br>";
+echo "<strong>Configurações (do config.php):</strong><br>";
 echo "Host: $smtp_host<br>";
 echo "Porta: $smtp_port<br>";
 echo "Segurança: $smtp_secure<br>";
 echo "Usuário: $smtp_username<br>";
 echo "Senha: " . (empty($smtp_password) || $smtp_password == 'SUA_SENHA_AQUI' ? '❌ NÃO CONFIGURADA' : '✅ Configurada') . "<br>";
+echo "E-mail destino: $email_destino<br>";
 echo "<hr>";
 
 if (empty($smtp_password) || $smtp_password == 'SUA_SENHA_AQUI') {
-    echo "<p style='color: red;'><strong>❌ ERRO:</strong> Configure a senha SMTP no arquivo test-phpmailer.php (linha 18)</p>";
+    echo "<p style='color: red;'><strong>❌ ERRO:</strong> Configure a senha SMTP no arquivo <code>config.php</code></p>";
     exit;
 }
 

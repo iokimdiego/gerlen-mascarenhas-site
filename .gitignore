@@ -24,6 +24,8 @@ logs/
 .env
 .env.local
 .env.production
+config.php
+email-logs.txt
 
 # Temporários
 *.tmp

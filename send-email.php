@@ -13,35 +13,25 @@ require 'phpmailer/src/Exception.php';
 require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
 
+// Carregar configurações
+if (!file_exists('config.php')) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Erro de configuração do servidor. Entre em contato pelo WhatsApp: (92) 99255-5753'
+    ]);
+    exit;
+}
+
+require 'config.php';
+
 // Configurações de segurança
 header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: ' . (defined('ALLOWED_ORIGINS') ? ALLOWED_ORIGINS : '*'));
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
-// Configurações de e-mail
-define('EMAIL_DESTINO', 'contato@gerlenmascarenhas.com.br');
-define('EMAIL_COPIA', 'iokimdiego@hotmail.com'); // E-mail adicional (opcional)
-define('NOME_REMETENTE', 'Site Dra. Gerlen Mascarenhas');
-define('DOMINIO', 'gerlenmascarenhas.com.br');
-
-// Configurações SMTP (Configure com suas credenciais)
-// Opção 1: E-mail do próprio domínio (HostGator)
-define('SMTP_HOST', 'mail.gerlenmascarenhas.com.br'); // ou smtp.hostgator.com
-define('SMTP_PORT', 465); // 465 para SSL ou 587 para TLS
-define('SMTP_SECURE', 'ssl'); // 'ssl' ou 'tls'
-define('SMTP_USERNAME', 'noreply@gerlenmascarenhas.com.br'); // E-mail criado no cPanel
-define('SMTP_PASSWORD', 'Alencar2!'); // Senha do e-mail
-
-// Opção 2: Gmail (caso queira usar Gmail - comentar/descomentar conforme necessário)
-// define('SMTP_HOST', 'smtp.gmail.com');
-// define('SMTP_PORT', 587);
-// define('SMTP_SECURE', 'tls');
-// define('SMTP_USERNAME', 'seu-email@gmail.com');
-// define('SMTP_PASSWORD', 'sua-senha-de-app'); // Use "Senha de app" do Google
-
-// Debug mode
-define('DEBUG_MODE', true);
+// Debug log
 $debug_log = [];
 
 function logDebug($message) {
