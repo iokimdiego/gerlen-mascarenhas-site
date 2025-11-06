@@ -27,6 +27,7 @@ Cota: 250 MB (ou ilimitado)
 ```
 
 **Exemplo de senha forte:**
+
 ```
 GerlenEmail2024!
 NaoResponda@2024
@@ -47,6 +48,7 @@ Redefina a senha:
 ### **Passo 2: Atualizar GitHub Secrets**
 
 Acesse:
+
 ```
 https://github.com/iokimdiego/gerlen-mascarenhas-site/settings/secrets/actions
 ```
@@ -59,6 +61,7 @@ Valor: [SENHA_QUE_VOCE_CRIOU_NO_CPANEL]
 ```
 
 **Como atualizar:**
+
 1. Clique em `SMTP_PASSWORD`
 2. Clique em **"Update secret"**
 3. Cole a SENHA EXATA do cPanel (sem espaços extras)
@@ -71,12 +74,14 @@ Valor: [SENHA_QUE_VOCE_CRIOU_NO_CPANEL]
 Agora vamos forçar o GitHub Actions a rodar novamente e atualizar o servidor:
 
 **Opção A - Fazer um commit vazio:**
+
 ```bash
 git commit --allow-empty -m "Trigger: Force redeploy with updated SMTP_PASSWORD"
 git push origin main
 ```
 
 **Opção B - Rodar workflow manualmente:**
+
 1. Acesse: https://github.com/iokimdiego/gerlen-mascarenhas-site/actions
 2. Clique no workflow **"Deploy to HostGator"**
 3. Clique em **"Run workflow"** → **"Run workflow"**
@@ -86,6 +91,7 @@ git push origin main
 ### **Passo 4: Aguardar Deploy (1-2 minutos)**
 
 Acompanhe em:
+
 ```
 https://github.com/iokimdiego/gerlen-mascarenhas-site/actions
 ```
@@ -99,17 +105,20 @@ Aguarde até o workflow ficar **verde ✅**
 Após o deploy, acesse:
 
 **Teste 1:**
+
 ```
 https://gerlenmascarenhas.com.br/test-phpmailer.php
 ```
 
 **Resultado esperado:**
+
 ```
 ✅ Configuração OK!
 ✅ E-mail enviado com sucesso!
 ```
 
 **Teste 2:**
+
 ```
 https://gerlenmascarenhas.com.br
 ```
@@ -117,6 +126,7 @@ https://gerlenmascarenhas.com.br
 Preencha o formulário de contato e envie.
 
 **Resultado esperado:**
+
 ```
 Mensagem enviada com sucesso! Em breve entraremos em contato.
 ```
@@ -128,12 +138,14 @@ Mensagem enviada com sucesso! Em breve entraremos em contato.
 ### **Problema 1: Senha com caracteres especiais**
 
 Alguns servidores têm problema com certos caracteres. Tente uma senha sem:
+
 - Aspas: `"` ou `'`
 - Barra invertida: `\`
 - Cifrão: `$`
 - Acento: `á`, `é`, `ç`
 
 **Senha recomendada:**
+
 ```
 Use apenas: A-Z, a-z, 0-9, @, #, !, %
 Exemplo: GerlenEmail2024!
@@ -142,6 +154,7 @@ Exemplo: GerlenEmail2024!
 ### **Problema 2: E-mail não está ativo**
 
 No cPanel, verifique se o e-mail tem:
+
 - ✅ Status "Ativo"
 - ✅ Cota disponível (não está cheio)
 - ✅ Sem suspenso
@@ -151,6 +164,7 @@ No cPanel, verifique se o e-mail tem:
 Entre em contato com suporte HostGator:
 
 **Mensagem para enviar:**
+
 ```
 Olá,
 
@@ -205,6 +219,7 @@ Obrigado!
 ## 💡 Dicas Importantes
 
 ### **Senha forte mas simples:**
+
 ```
 ✅ BOM: GerlenEmail2024!
 ✅ BOM: NoReply@Titan25
@@ -213,11 +228,13 @@ Obrigado!
 ```
 
 ### **Copiar/Colar senha:**
+
 - Use CTRL+C / CTRL+V
 - Evite digitar manualmente
 - Não deixe espaços no início/fim
 
 ### **GitHub Secret:**
+
 - Cole exatamente como está no cPanel
 - Sem espaços antes ou depois
 - Case sensitive (maiúsculas/minúsculas importam)
@@ -240,10 +257,12 @@ git push origin main
 ## ✅ Após Funcionar
 
 1. **Desativar DEBUG_MODE:**
+
    - Atualize Secret: `DEBUG_MODE` → `false`
    - Faça novo deploy
 
 2. **Remover arquivos de teste:**
+
    ```bash
    # Não delete localmente, delete no servidor via FTP/cPanel
    # Ou adicione ao .github/workflows/deploy.yml na exclusão
