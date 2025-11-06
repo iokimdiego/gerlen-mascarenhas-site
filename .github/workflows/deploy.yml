@@ -1,4 +1,4 @@
-name: 🚀 Deploy para HostGator via FTP
+name: 🚀 Deploy to HostGator via FTP
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  web-deploy:
+  deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
 
@@ -15,16 +15,17 @@ jobs:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: Deploy para HostGator via FTP
+      - name: 📂 Sync files via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USER }}
+          username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-        #   port: ${{ secrets.FTP_PORT }}
-        #   protocol: ftp
-        #   server-dir: /gerlenmascarenhas.com.br/
-        #   local-dir: ./ 
+          port: 21
+          protocol: ftp
+          server-dir: /public_html/gerlenmascarenhas.com.br/
+          local-dir: ./
+          dangerous-clean-slate: false
           exclude: |
             **/.git*
             **/.git*/**
@@ -32,3 +33,7 @@ jobs:
             **/.github/**
             **/README.md
             **/ANALISE-MELHORIAS.md
+            **/ref/**
+            **/.vscode/**
+            **/.DS_Store
+            **/Thumbs.db
