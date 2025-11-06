@@ -23,7 +23,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           protocol: ftp
-          server-dir: /gerlenmascarenhas.com.br/
+          server-dir: /
           local-dir: ./
           dangerous-clean-slate: false
           exclude: |
