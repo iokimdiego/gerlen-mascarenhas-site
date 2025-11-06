@@ -21,9 +21,9 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: ${{ secrets.FTP_PORT }}
-          protocol: ftp
-          server-dir: /public_html/gerlenmascarenhas.com.br/
+          port: 21
+          protocol: ftps
+          server-dir: ./
           local-dir: ./
           dangerous-clean-slate: false
           exclude: |
@@ -33,7 +33,9 @@ jobs:
             **/.github/**
             **/README.md
             **/ANALISE-MELHORIAS.md
+            **/DEPLOY.md
             **/ref/**
             **/.vscode/**
             **/.DS_Store
             **/Thumbs.db
+            **/styles-old-backup.css
