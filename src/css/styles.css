@@ -1627,6 +1627,13 @@ h1, h2, h3, h4, h5, h6 {
         line-height: 1.2;
         margin-bottom: 0.0rem;
     }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        line-height: 1.1;
+        margin-top: 0;
+        padding: 0.5rem 2rem;
+    }
 
     /* Hero Gerlen - Largura total e maior destaque */
     .hero-right {
@@ -1654,10 +1661,13 @@ h1, h2, h3, h4, h5, h6 {
 
     /* Botão CTA flutuante sobre a imagem - CORRIGIDO */
     .hero-anchor {
+        display: flex;
         position: absolute;
+        justify-content: center;
+        align-items: center;
         bottom: 20%;
-        left: 16%;
-        transform: translateX(-50%);
+        left: 12vw;
+        /* transform: translateX(-50%); */
         z-index: 10;
         margin: 0;
         width: calc(100% - 3rem);
@@ -1704,7 +1714,170 @@ h1, h2, h3, h4, h5, h6 {
         padding: 0.75rem 1.5rem;
     }
 
-    /* ... continue with other existing styles ... */
+    /* Oculta os 3 primeiros mosaicos no mobile */
+    .mosaic-grid .mosaic-item:nth-child(-n+3) {
+        display: none;
+    }
+
+    /* Transforma o b3 em círculo perfeito com foco no rosto */
+    .mosaic-grid {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 1rem;
+    }
+
+    .mosaic-grid .mosaic-item:nth-child(4) {
+        width: 280px;
+        height: 280px;
+        max-width: 90vw;
+        max-height: 90vw;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mosaic-grid .mosaic-item:nth-child(4) img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 25%;
+        transform: scale(1.6);
+        filter: grayscale(100%);
+    }
+
+    .services-section {
+        padding: 3rem 0.75rem;
+    }
+
+    .services-grid {
+        padding: 0;
+    }
+
+    .service-card {
+        padding: 2rem 1.25rem;
+    }
+
+    .testimonials-section {
+        padding: 3rem 0;
+    }
+
+    .testimonials-grid {
+        padding: 1rem 0.75rem;
+    }
+
+    .testimonial-card {
+        min-width: 260px;
+        max-width: 85vw;
+        padding: 2rem 1.25rem;
+    }
+
+    .instagram-section {
+        padding: 3rem 0.75rem;
+    }
+
+    .instagram-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        padding: 0;
+    }
+
+    .contact-section {
+        padding: 3rem 0.75rem;
+    }
+
+    .contact-wrapper {
+        padding: 0;
+        gap: 2rem;
+        max-width: 100%;
+    }
+
+    .contact-info {
+        padding: 2rem 1.25rem;
+        border-radius: 16px;
+    }
+
+    .contact-form-wrapper {
+        padding: 2rem 1.25rem;
+        border-radius: 16px;
+    }
+
+    .contact-info-title {
+        font-size: 1.5rem;
+    }
+
+    .contact-method {
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+
+    .contact-method-text h4 {
+        font-size: 0.95rem;
+    }
+
+    .contact-method-text p {
+        font-size: 0.85rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .form-input {
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .form-submit-btn {
+        width: 100%;
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .footer-section {
+        padding: 3rem 0.75rem 2rem;
+    }
+
+    .footer-container {
+        padding: 0 0.75rem;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .footer-brand {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .footer-logo {
+        width: 296px;
+        max-width: 300px;
+        margin-bottom: 0.3rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .whatsapp-float {
+        bottom: 16px;
+        right: 16px;
+        width: 56px;
+        height: 56px;
+    }
+
+    .whatsapp-float svg {
+        width: 32px;
+        height: 32px;
+    }
 }
 
 @media (max-width: 768px) {
