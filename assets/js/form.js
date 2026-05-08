@@ -1,10 +1,23 @@
+/**
+ * FORM.JS - Gerenciamento de Formulário com Formspree
+ * Solução frontend-only para envio de emails
+ * 
+ * Serviço: Formspree (https://formspree.io)
+ * Não requer backend PHP
+ */
+
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("contact-form");
+    if (!form) return;
+
     const nameInput = document.getElementById("name");
     const emailInput = document.getElementById("email");
     const phoneInput = document.getElementById("phone");
     const messageInput = document.getElementById("message");
     const submitButton = form.querySelector('.form-submit-btn');
+
+    // Formspree Project ID - Altere com o seu ID real
+    const FORMSPREE_ID = 'mkgojqkp'; // ID padrão para testes
 
     form.addEventListener("submit", async function(event) {
         event.preventDefault();
@@ -50,30 +63,28 @@ document.addEventListener("DOMContentLoaded", function() {
             Enviando...
         `;
 
-        // Preparar dados
-        const formData = new FormData(form);
-
         try {
-            // Enviar para o backend PHP
-            const response = await fetch('send-email.php', {
+            // Enviar para Formspree
+            const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: nameInput.value,
+                    email: emailInput.value,
+                    phone: phoneInput.value,
+                    message: messageInput.value,
+                    _subject: `Nova Mensagem do Site - ${nameInput.value}`
+                })
             });
 
-            const result = await response.json();
-
-            if (result.success) {
-                // Sucesso
-                showSuccessMessage(result.message);
+            if (response.ok) {
+                showSuccessMessage('Mensagem enviada com sucesso! Entraremos em contato em breve.');
                 form.reset();
             } else {
-                // Erro
-                showErrorMessage(result.message || 'Erro ao enviar mensagem.');
-                if (result.errors) {
-                    result.errors.forEach(error => {
-                        console.error(error);
-                    });
-                }
+                showErrorMessage('Erro ao enviar mensagem. Por favor, tente novamente.');
             }
         } catch (error) {
             console.error('Erro:', error);
@@ -156,14 +167,4 @@ document.addEventListener("DOMContentLoaded", function() {
             alert.remove();
         }, 5000);
     }
-
-    // Máscara de telefone
-    phoneInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length <= 11) {
-            value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
-            value = value.replace(/(\d)(\d{4})$/, '$1-$2');
-        }
-        e.target.value = value;
-    });
 });
