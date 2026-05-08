@@ -1335,8 +1335,8 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     bottom: 24px;
     right: 24px;
-    width: 64px;
-    height: 64px;
+    width: 52px;
+    height: 52px;
     background-color: var(--color-verde-principal);
     color: #ffffff;
     border-radius: 50%;
@@ -1352,8 +1352,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .whatsapp-float svg {
-    width: 36px;
-    height: 36px;
+    width: 29px;
+    height: 29px;
 }
 
 .whatsapp-float:hover {
@@ -1418,6 +1418,20 @@ h1, h2, h3, h4, h5, h6 {
     .footer-top {
         grid-template-columns: repeat(2, 1fr);
         gap: 2.5rem;
+    }
+
+    .footer-section {
+        padding-bottom: 6rem;
+    }
+
+    .whatsapp-float {
+        bottom: 64px;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1600px) {
+    .whatsapp-float {
+        bottom: 64px;
     }
 }
 
@@ -1870,13 +1884,13 @@ h1, h2, h3, h4, h5, h6 {
     .whatsapp-float {
         bottom: 16px;
         right: 16px;
-        width: 56px;
-        height: 56px;
+        width: 45px;
+        height: 45px;
     }
 
     .whatsapp-float svg {
-        width: 32px;
-        height: 32px;
+        width: 26px;
+        height: 26px;
     }
 }
 
