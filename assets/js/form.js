@@ -1,8 +1,6 @@
 /**
- * FORM.JS - Gerenciamento de Formulário com Formspree
- * Solução frontend-only para envio de emails
- * 
- * Serviço: Formspree (https://formspree.io)
+ * FORM.JS - Gerenciamento de Formulário
+ * Solução frontend-only com redirecionamento para WhatsApp
  * Não requer backend PHP
  */
 
@@ -16,8 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const messageInput = document.getElementById("message");
     const submitButton = form.querySelector('.form-submit-btn');
 
-    // Formspree Project ID - Altere com o seu ID real
-    const FORMSPREE_ID = 'mkgojqkp'; // ID padrão para testes
+    const WHATSAPP_NUMBER = '5592992555753';
 
     form.addEventListener("submit", async function(event) {
         event.preventDefault();
@@ -64,31 +61,30 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
 
         try {
-            // Enviar para Formspree
-            const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: nameInput.value,
-                    email: emailInput.value,
-                    phone: phoneInput.value,
-                    message: messageInput.value,
-                    _subject: `Nova Mensagem do Site - ${nameInput.value}`
-                })
-            });
+            const messageLines = [
+                '*Nova mensagem pelo site*',
+                '',
+                `*Nome:* ${nameInput.value.trim()}`,
+                `*E-mail:* ${emailInput.value.trim()}`,
+                `*Telefone:* ${phoneInput.value.trim()}`,
+                '',
+                `*Mensagem:*`,
+                messageInput.value.trim()
+            ];
 
-            if (response.ok) {
-                showSuccessMessage('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-                form.reset();
-            } else {
-                showErrorMessage('Erro ao enviar mensagem. Por favor, tente novamente.');
+            const whatsappText = encodeURIComponent(messageLines.join('\n'));
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappText}`;
+
+            const popup = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+            if (!popup) {
+                window.location.href = whatsappUrl;
             }
+
+            showSuccessMessage('Redirecionando para o WhatsApp...');
+            form.reset();
         } catch (error) {
             console.error('Erro:', error);
-            showErrorMessage('Erro de conexão. Verifique sua internet e tente novamente.');
+            showErrorMessage('Não foi possível abrir o WhatsApp. Tente novamente.');
         } finally {
             // Reabilitar botão
             submitButton.disabled = false;
